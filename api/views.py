@@ -5,12 +5,19 @@ from rest_framework.views import APIView
 from utils.response import CustomResponse
 from utils.views import TokenGenerate
 from .models import User
+import json
 
+def get_questions() -> dict:
+    questions_file_path = "./data/questions.json"
+    with open(questions_file_path, 'r') as f:
+        questions_json = json.load(f)
+        return questions_json
+    
 
-class Test(APIView):
-    def get(self, request):
-        return CustomResponse(general_message='hello').get_success_response()
-
+class QuestionsAPI(APIView):
+    permission_classes = (AllowAny,)
+    def get(self,request):
+        return CustomResponse(response=get_questions()).get_success_response()
 
 class RegisterUserAPI(APIView):
     permission_classes = (AllowAny,)
