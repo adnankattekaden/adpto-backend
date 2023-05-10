@@ -11,6 +11,7 @@ from .serializers import QuestionSerializer
 from utils.permission import CustomizePermission
 
 from utils.permission import JWTUtils
+from api.generate import generate
 
 class QuestionsAPI(APIView):
     authentication_classes = [CustomizePermission]
@@ -25,6 +26,15 @@ class QuestionsAPI(APIView):
         response = beginner + intermediate + advanced
 
         return CustomResponse(response=response).get_success_response()
+
+
+class ResultAPI(APIView):
+    authentication_classes = [CustomizePermission]
+    def get(self,request):
+        user = User.objects.filter(id=JWTUtils.fetch_user_id(request)).first()
+        answers = Answers.objects.filter(user=user)
+        
+        return CustomResponse(response=generate(answers)).get_success_response()
 
 
 class SubmitAnswerAPI(APIView):

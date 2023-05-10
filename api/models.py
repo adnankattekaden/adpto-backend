@@ -65,6 +65,6 @@ class Answers(models.Model):
     question = models.ForeignKey(Questions,models.CASCADE)
     user = models.ForeignKey(User,models.CASCADE)
     answered = models.CharField(max_length=250)
-    time_taken = models.IntegerField()
+    time_taken = models.FloatField()
     created_at = models.DateField(auto_now_add=True)
 
