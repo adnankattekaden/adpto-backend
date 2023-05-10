@@ -57,3 +57,14 @@ class Questions(models.Model):
 
     class Meta:
         db_table = 'questions'
+
+
+
+class Answers(models.Model):
+    id = models.AutoField(primary_key=True)
+    question = models.ForeignKey(Questions,models.CASCADE)
+    user = models.ForeignKey(User,models.CASCADE)
+    answered = models.CharField(max_length=250)
+    time_taken = models.IntegerField()
+    created_at = models.DateField(auto_now_add=True)
+

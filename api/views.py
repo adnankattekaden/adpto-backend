@@ -6,30 +6,41 @@ from rest_framework.views import APIView
 
 from utils.response import CustomResponse
 from utils.views import TokenGenerate
-from .models import User, Questions
-
+from .models import User, Questions,Answers
 from .serializers import QuestionSerializer
+from utils.permission import CustomizePermission
+
+from utils.permission import JWTUtils
 
 class QuestionsAPI(APIView):
-    permission_classes = (AllowAny,)
+    authentication_classes = [CustomizePermission]
 
     def get(self, request):
-        medium_questions = Questions.objects.filter(difficulty_level='Medium').order_by('?')[:5]
+        intermediate_questions = Questions.objects.filter(difficulty_level='Intermediate').order_by('?')[:5]
         beginner_questions = Questions.objects.filter(difficulty_level='Beginner').order_by('?')[:5]
         advanced_questions = Questions.objects.filter(difficulty_level='Advanced').order_by('?')[:5]
-        medium = QuestionSerializer(medium_questions,many=True).data
+        intermediate = QuestionSerializer(intermediate_questions,many=True).data
         beginner = QuestionSerializer(beginner_questions,many=True).data
         advanced = QuestionSerializer(advanced_questions,many=True).data
-        print(medium,beginner,advanced)
-        response = beginner + medium + advanced
+        response = beginner + intermediate + advanced
 
         return CustomResponse(response=response).get_success_response()
 
 
 class SubmitAnswerAPI(APIView):
-    permission_classes = (AllowAny,)
+    authentication_classes = [CustomizePermission]
     def post(self, request):
-        pass
+        question_id = request.data.get('questionId')
+        user_answer = request.data.get('userAnswer')
+        time_taken = request.data.get('timeTaken')
+
+        if None in (question_id, user_answer, time_taken):
+            return CustomResponse(general_message='All fields are required').get_failure_response()
+        
+        question = Questions.objects.filter(id=question_id).first()
+        user = User.objects.filter(id=JWTUtils.fetch_user_id(request)).first()
+        Answers.objects.create(question=question,user=user,answered=user_answer,time_taken=time_taken)
+        return CustomResponse(general_message='answer submitted').get_success_response()
 
 
 
