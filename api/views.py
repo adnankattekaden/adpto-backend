@@ -28,12 +28,12 @@ class QuestionsAPI(APIView):
         return CustomResponse(response=response).get_success_response()
 
 
+
 class ResultAPI(APIView):
     authentication_classes = [CustomizePermission]
     def get(self,request):
         user = User.objects.filter(id=JWTUtils.fetch_user_id(request)).first()
         answers = Answers.objects.filter(user=user)
-        
         return CustomResponse(response=generate(answers)).get_success_response()
 
 
@@ -52,7 +52,16 @@ class SubmitAnswerAPI(APIView):
         Answers.objects.create(question=question,user=user,answered=user_answer,time_taken=time_taken)
         return CustomResponse(general_message='answer submitted').get_success_response()
 
+class MarkAsChecked(APIView):
+    authentication_classes = [CustomizePermission]
 
+    
+    def post(self, request):
+        answerId = request.data.get('answerId')
+        answer = Answers.objects.filter(id=answerId).first()
+        answer.status = True
+        answer.save()
+        return CustomResponse(general_message='Mark as completed').get_success_response()
 
 class RegisterUserAPI(APIView):
     permission_classes = (AllowAny,)

@@ -67,4 +67,5 @@ class Answers(models.Model):
     answered = models.CharField(max_length=250)
     time_taken = models.FloatField()
     created_at = models.DateField(auto_now_add=True)
+    status = models.BooleanField(default=False)
 

@@ -11,9 +11,15 @@ def generate(answers):
     total_score = 0
     elapsed_time = 0
     correct_ans = 0
-
+    wrong_questions_tags = []
     for answer in answers:
-
+        if answer.question.correct_answer.upper() != answer.answered.upper():
+            wrong_questions_tags.append({
+                'id':answer.id,
+                'tag':answer.question.tags,
+                'userAnswered':answer.answered,
+                'status':answer.status
+            })
         if answer.question.correct_answer.upper() == answer.answered.upper():
 
             weight = difficulty_weights[answer.question.difficulty_level]
@@ -38,4 +44,4 @@ def generate(answers):
     else:
         proficiency_level = proficiency_levels[level_index]
 
-    return {'totalScore':total_score,'proficiencyLevel':proficiency_level,'elapsedTime':elapsed_time}
+    return {'totalScore':total_score,'proficiencyLevel':proficiency_level,'elapsedTime':elapsed_time,'wrong':wrong_questions_tags}
