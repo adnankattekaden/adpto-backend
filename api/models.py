@@ -42,3 +42,18 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+
+class Questions(models.Model):
+    id = models.AutoField(primary_key=True)
+    question = models.CharField(max_length=250)
+    a = models.CharField(max_length=250)
+    b = models.CharField(max_length=250)
+    c = models.CharField(max_length=250)
+    d = models.CharField(max_length=250)
+    correct_answer = models.CharField(max_length=250)
+    difficulty_level = models.CharField(max_length=100)
+    tags = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'questions'

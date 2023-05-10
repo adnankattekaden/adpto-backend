@@ -27,4 +27,3 @@ venv/
 .vscode
 .idea
 
-*.sqlite3

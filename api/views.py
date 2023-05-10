@@ -1,23 +1,37 @@
+import json
+
 from django.contrib.auth import authenticate
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
 from utils.response import CustomResponse
 from utils.views import TokenGenerate
-from .models import User
-import json
+from .models import User, Questions
 
-def get_questions() -> dict:
-    questions_file_path = "./data/questions.json"
-    with open(questions_file_path, 'r') as f:
-        questions_json = json.load(f)
-        return questions_json
-    
+from .serializers import QuestionSerializer
 
 class QuestionsAPI(APIView):
     permission_classes = (AllowAny,)
-    def get(self,request):
-        return CustomResponse(response=get_questions()).get_success_response()
+
+    def get(self, request):
+        medium_questions = Questions.objects.filter(difficulty_level='Medium').order_by('?')[:5]
+        beginner_questions = Questions.objects.filter(difficulty_level='Beginner').order_by('?')[:5]
+        advanced_questions = Questions.objects.filter(difficulty_level='Advanced').order_by('?')[:5]
+        medium = QuestionSerializer(medium_questions,many=True).data
+        beginner = QuestionSerializer(beginner_questions,many=True).data
+        advanced = QuestionSerializer(advanced_questions,many=True).data
+        print(medium,beginner,advanced)
+        response = beginner + medium + advanced
+
+        return CustomResponse(response=response).get_success_response()
+
+
+class SubmitAnswerAPI(APIView):
+    permission_classes = (AllowAny,)
+    def post(self, request):
+        pass
+
+
 
 class RegisterUserAPI(APIView):
     permission_classes = (AllowAny,)
