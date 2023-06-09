@@ -9,8 +9,10 @@ class TokenGenerate:
         if user is not None:
             access_expiry_time = datetime.now() + timedelta(seconds=1800)  # 30 minutes
             access_expiry = access_expiry_time.strftime("%d/%m/%Y %H:%M:%S")
+
             access_token = jwt.encode(
-                {'id': user.id, 'expiry': access_expiry, 'tokenType': 'access'},
+                {'id': user.id, 'expiry': access_expiry,
+                 'tokenType': 'access'},
                 decouple.config('SECRET_KEY'),
                 algorithm="HS256")
 

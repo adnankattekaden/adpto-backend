@@ -1,5 +1,3 @@
-import pandas as pd
-
 def generate(answers):
     difficulty_weights = {'Beginner': 3, 'Intermediate': 5, 'Advanced': 8}
     time_thresholds = {'Beginner': 10, 'Intermediate': 20, 'Advanced': 30}
@@ -12,16 +10,21 @@ def generate(answers):
     elapsed_time = 0
     correct_ans = 0
     wrong_questions_tags = []
+    reports = []
+
     for answer in answers:
+
         if answer.question.correct_answer.upper() != answer.answered.upper():
             wrong_questions_tags.append({
-                'id':answer.id,
-                'tag':answer.question.tags,
-                'userAnswered':answer.answered,
-                'status':answer.status
+                'id': answer.id,
+                'tag': answer.question.tags,
+                'userAnswered': answer.answered,
+                'status': answer.status
             })
-        if answer.question.correct_answer.upper() == answer.answered.upper():
 
+        reports.append({'questionIndex': answer.id, 'correct': answer.question.correct_answer})
+
+        if answer.question.correct_answer.upper() == answer.answered.upper():
             weight = difficulty_weights[answer.question.difficulty_level]
             time_threshold = time_thresholds[answer.question.difficulty_level]
             penalty = penalty_factor * max(0, answer.time_taken - time_threshold)
@@ -44,4 +47,5 @@ def generate(answers):
     else:
         proficiency_level = proficiency_levels[level_index]
 
-    return {'totalScore':total_score,'proficiencyLevel':proficiency_level,'elapsedTime':elapsed_time,'wrong':wrong_questions_tags}
+    return {'totalScore': total_score, 'proficiencyLevel': proficiency_level, 'elapsedTime': elapsed_time,
+            'wrong': wrong_questions_tags, 'reports': reports}

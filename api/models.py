@@ -44,6 +44,16 @@ class User(AbstractBaseUser):
         return self.email
 
 
+class Tests(models.Model):
+    id = models.AutoField(primary_key=True)
+    subject = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_time = models.DateField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'tests'
+
+
 class Questions(models.Model):
     id = models.AutoField(primary_key=True)
     question = models.CharField(max_length=250)
@@ -59,13 +69,14 @@ class Questions(models.Model):
         db_table = 'questions'
 
 
-
 class Answers(models.Model):
     id = models.AutoField(primary_key=True)
-    question = models.ForeignKey(Questions,models.CASCADE)
-    user = models.ForeignKey(User,models.CASCADE)
+    test = models.ForeignKey(Tests, on_delete=models.CASCADE)
+    question = models.ForeignKey(Questions, on_delete=models.CASCADE)
     answered = models.CharField(max_length=250)
     time_taken = models.FloatField()
     created_at = models.DateField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
+    class Meta:
+        db_table = 'answers'
