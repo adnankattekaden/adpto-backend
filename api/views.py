@@ -97,7 +97,9 @@ class UserInfo(APIView):
     def get(self, request):
         user = User.objects.filter(id=JWTUtils.fetch_user_id(request)).first()
 
-        return CustomResponse(general_message='userinfo').get_success_response()
+        isTestAttended = True if Tests.objects.filter(user=user).first() else False
+        data = {'name': user.name, 'email': user.email, 'isTestAttended': isTestAttended}
+        return CustomResponse(response=data).get_success_response()
 
 
 class RegisterUserAPI(APIView):
