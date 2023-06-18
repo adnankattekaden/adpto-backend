@@ -23,7 +23,7 @@ def generate(answers):
             })
 
         reports.append({'questionIndex': answer.id,
-                        'correct': True if answer.question.correct_answer == answer.answered else False})
+                        'correct': True if answer.question.correct_answer.upper() == answer.answered.upper() else False})
 
         if answer.question.correct_answer.upper() == answer.answered.upper():
             weight = difficulty_weights[answer.question.difficulty_level]
