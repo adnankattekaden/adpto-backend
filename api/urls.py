@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import RegisterUserAPI, LoginAPI, QuestionsAPI, SubmitAnswerAPI, ResultAPI, MarkAsChecked, CreateTestAPI, \
-    UserInfo
+    UserInfo, GenerateRoadmapAPI
 
 urlpatterns = [
     path('login/', LoginAPI.as_view()),
@@ -12,5 +12,6 @@ urlpatterns = [
     path('mark-as-checked/', MarkAsChecked.as_view()),
     path('create-test/', CreateTestAPI.as_view()),
     path('info/', UserInfo.as_view()),
+    path('generate-roadmap/', GenerateRoadmapAPI.as_view()),
 
 ]

@@ -110,14 +110,16 @@ class RegisterUserAPI(APIView):
         email = request.data.get('email')
         phone = request.data.get('phone')
         password = request.data.get('password')
+        education = request.data.get('education')
+        gender = request.data.get('gender')
 
-        if None in (name, email, phone, password):
+        if None in (name, email, phone, password, education):
             return CustomResponse(general_message='All fields are required').get_failure_response()
 
         if User.email_exists(email):
             return CustomResponse(general_message='Email already exists').get_failure_response()
 
-        user = User(name=name, email=email, phone=phone)
+        user = User(name=name, email=email, phone=phone, education=education, gender=gender)
         user.set_password(password)
         user.save()
         return CustomResponse(general_message='User registered successfully').get_success_response()
@@ -135,3 +137,11 @@ class LoginAPI(APIView):
             return CustomResponse(response=auth).get_success_response()
         else:
             return CustomResponse(general_message="login failed").get_failure_response()
+
+
+class GenerateRoadmapAPI(APIView):
+    authentication_classes = [CustomizePermission]
+
+    def get(self, request):
+        print('e')
+        return CustomResponse(general_message='hye').get_success_response()

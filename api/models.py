@@ -23,6 +23,8 @@ class User(AbstractBaseUser):
     name = models.CharField(max_length=75)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
+    gender = models.CharField(max_length=50)
+    education = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
