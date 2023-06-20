@@ -235,9 +235,9 @@ class GenerateRoadmapAPI(APIView):
                     else:
                         mark_as_completed = False
                         already_know = False
-                new_data.append(
-                    {'tag': tags, 'reference_link': reference_link, 'description': description, 'topic': topic,
-                     'mark_as_completed': mark_as_completed, 'alreadyKnow': already_know})
+                    new_data.append(
+                        {'tag': tags, 'reference_link': reference_link, 'description': description, 'topic': topic,
+                         'mark_as_completed': mark_as_completed, 'alreadyKnow': already_know})
 
         sorted_json_data = sorted(new_data, key=lambda x: sort_list.index(x["tag"]))
         return CustomResponse(response=sorted_json_data).get_success_response()
