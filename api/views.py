@@ -92,6 +92,7 @@ class MarkAsChecked(APIView):
         if not tag:
             return CustomResponse(general_message='Invalid Tag').get_failure_response()
         test = Tests.objects.filter(id=test_id).first()
+
         TestTagListLink.objects.create(test=test, tag=tag, is_already_know=is_already_know,
                                        is_marked_as_checked=is_marked_as_checked)
         return CustomResponse(general_message='Mark as completed').get_success_response()
@@ -156,6 +157,85 @@ class LoginAPI(APIView):
             return CustomResponse(general_message="login failed").get_failure_response()
 
 
+class GenerateRoadmapAPI(APIView):
+    authentication_classes = [CustomizePermission]
+
+    def get(self, request, test_id):
+        test = Tests.objects.filter(id=test_id).first()
+        answers = Answers.objects.filter(test=test)
+        result = generate_roadmap(answers)
+        current_level = result.get('proficiencyLevel')
+        correct_answers = result.get('correct_answer')
+        wrong_answers = result.get('wrong')
+
+        new_tags = set()
+        removal_tags = set()
+        additions_tags = set()
+
+        if current_level == "Advanced":
+            for answer in correct_answers:
+                if current_level == answer.get('level'):
+                    removal_tags.add(answer.get('tag'))
+            for wrong in wrong_answers:
+                if wrong.get('level') == "Beginner" or wrong.get('level') == "Intermediate":
+                    additions_tags.add(wrong.get('tag'))
+        elif current_level == "Intermediate":
+            for answer in correct_answers:
+                if current_level == answer.get('level'):
+                    for answer in correct_answers:
+                        if answer.get('level') == "Advanced" or answer.get('level') == "Intermediate":
+                            removal_tags.add(answer.get('tag'))
+                    for wrong in wrong_answers:
+                        if wrong.get('level') == "Beginner":
+                            additions_tags.add(wrong.get('tag'))
+
+        elif current_level == "Beginner":
+            for answer in correct_answers:
+                if current_level == answer.get('level'):
+                    removal_tags.add(answer.get('tag'))
+
+
+        f = open('./data/Roadmaps/Python.json')
+        roadmap = json.load(f)
+        for key in roadmap:
+            level = key.get('level')
+            tag = key.get('tag')
+            if current_level == "Advanced":
+                if level == "Advanced":
+                    new_tags.add(tag)
+            elif current_level == "Intermediate":
+                if level == "Intermediate" or level == "Advanced":
+                    new_tags.add(tag)
+            elif current_level == "Beginner":
+                new_tags.add(tag)
+
+        for tag in removal_tags:
+            new_tags.discard(tag)
+
+        new_tags.update(additions_tags)
+
+        new_data = []
+        for key in roadmap:
+            for tags in new_tags:
+                if tags == key.get('tag'):
+                    reference_link = key.get('reference link')
+                    description = key.get('description')
+                    topic = key.get('Topic')
+                    mark_as_completed = TestTagListLink.objects.filter(
+                        test__id=test_id,
+                        tag__title=tag).first().is_marked_as_checked if TestTagListLink.objects.filter(
+                        test__id=test_id, tag__title=tag).first() else False
+
+                    already_know = TestTagListLink.objects.filter(
+                        test__id=test_id,
+                        tag__title=tag).first().is_already_know if TestTagListLink.objects.filter(
+                        test__id=test_id, tag__title=tag).first() else False
+                    new_data.append(
+                        {'tag': tags, 'reference_link': reference_link, 'description': description, 'topic': topic,
+                         'mark_as_completed': mark_as_completed, 'alreadyKnow': already_know})
+
+        return CustomResponse(response=new_data).get_success_response()
+
 # class GenerateRoadmapAPI(APIView):
 #     authentication_classes = [CustomizePermission]
 #
@@ -167,91 +247,48 @@ class LoginAPI(APIView):
 #         correct_answers = result.get('correct_answer')
 #
 #         new_tags = set()
-#         removal_tags = set()
+#         removal_tags = {}
 #         if current_level == "Advanced":
 #             for answer in correct_answers:
 #                 if current_level == answer.get('level'):
-#                     removal_tags.add(answer.get('tag'))
+#                     removal_tags[answer.get('tag')] = True
 #
-#         f = open('./data/Roadmaps/Python.json')
-#         roadmap = json.load(f)
+#         with open('./data/Roadmaps/Python.json') as f:
+#             roadmap = json.load(f)
+#
 #         for key in roadmap:
 #             level = key.get('level')
 #             tag = key.get('tag')
 #             if current_level == level:
 #                 new_tags.add(tag)
 #
-#         for tag in removal_tags:
+#         for tag in removal_tags.keys():
 #             new_tags.discard(tag)
 #
 #         new_data = []
 #         for key in roadmap:
-#             for tags in new_tags:
-#                 if tags == key.get('tag'):
-#                     reference_link = key.get('reference_link')
-#                     description = key.get('description')
-#                     topic = key.get('Topic')
-#                     mark_as_completed = False
-#                     already_know = False
-#                     new_data.append(
-#                         {'tag': tags, 'reference_link': reference_link, 'description': description, 'topic': topic,
-#                          'mark_as_completed': mark_as_completed, 'alreadyKnow': already_know})
+#             tag = key.get('tag')
+#             if tag in new_tags:
+#                 reference_link = key.get('reference link')
+#                 description = key.get('description')
+#                 topic = key.get('Topic')
+#
+#                 mark_as_completed = TestTagListLink.objects.filter(
+#                     test__id=test_id,
+#                     tag__title=tag).first().is_marked_as_checked if TestTagListLink.objects.filter(
+#                     test__id=test_id, tag__title=tag).first() else False
+#
+#                 already_know = TestTagListLink.objects.filter(
+#                     test__id=test_id,
+#                     tag__title=tag).first().is_already_know if TestTagListLink.objects.filter(
+#                     test__id=test_id, tag__title=tag).first() else False
+#                 new_data.append({
+#                     'tag': tag,
+#                     'reference_link': reference_link,
+#                     'description': description,
+#                     'topic': topic,
+#                     'markAsCompleted': mark_as_completed,
+#                     'alreadyKnow': already_know
+#                 })
 #
 #         return CustomResponse(response=new_data).get_success_response()
-
-class GenerateRoadmapAPI(APIView):
-    authentication_classes = [CustomizePermission]
-
-    def get(self, request, test_id):
-        test = Tests.objects.filter(id=test_id).first()
-        answers = Answers.objects.filter(test=test)
-        result = generate_roadmap(answers)
-        current_level = result.get('proficiencyLevel')
-        correct_answers = result.get('correct_answer')
-
-        new_tags = set()
-        removal_tags = {}
-        if current_level == "Advanced":
-            for answer in correct_answers:
-                if current_level == answer.get('level'):
-                    removal_tags[answer.get('tag')] = True
-
-        with open('./data/Roadmaps/Python.json') as f:
-            roadmap = json.load(f)
-
-        for key in roadmap:
-            level = key.get('level')
-            tag = key.get('tag')
-            if current_level == level:
-                new_tags.add(tag)
-
-        for tag in removal_tags.keys():
-            new_tags.discard(tag)
-
-        new_data = []
-        for key in roadmap:
-            tag = key.get('tag')
-            if tag in new_tags:
-                reference_link = key.get('reference link')
-                description = key.get('description')
-                topic = key.get('Topic')
-
-                mark_as_completed = TestTagListLink.objects.filter(
-                    test__id=test_id,
-                    tag__title=tag).first().is_marked_as_checked if TestTagListLink.objects.filter(
-                    test__id=test_id, tag__title=tag).first() else False
-
-                already_know = TestTagListLink.objects.filter(
-                    test__id=test_id,
-                    tag__title=tag).first().is_already_know if TestTagListLink.objects.filter(
-                    test__id=test_id, tag__title=tag).first() else False
-                new_data.append({
-                    'tag': tag,
-                    'reference_link': reference_link,
-                    'description': description,
-                    'topic': topic,
-                    'markAsCompleted': mark_as_completed,
-                    'alreadyKnow': already_know
-                })
-
-        return CustomResponse(response=new_data).get_success_response()

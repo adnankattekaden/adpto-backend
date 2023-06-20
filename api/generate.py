@@ -72,7 +72,7 @@ def generate_roadmap(answers):
         if answer.question.correct_answer.upper() != answer.answered.upper():
             wrong_questions_tags.append({
                 'id': answer.id,
-                'tag': answer.question.tags,
+                'tag': answer.question.tags.title,
                 'level': answer.question.difficulty_level,
                 'userAnswered': answer.answered,
                 'status': answer.status
@@ -89,7 +89,7 @@ def generate_roadmap(answers):
             score = (weight * (1 + bonus)) - penalty
             correct_answer_tags.append({
                 'id': answer.id,
-                'tag': answer.question.tags,
+                'tag': answer.question.tags.title,
                 'level': answer.question.difficulty_level,
                 'markAsCompleted': answer.status,
                 'userAnswered': answer.answered,
