@@ -94,8 +94,14 @@ class MarkAsChecked(APIView):
         test = Tests.objects.filter(id=test_id).first()
         test_tag_link = TestTagListLink.objects.filter(test=test, tag=tag).first()
         if test_tag_link:
-            test_tag_link.is_already_know = is_already_know
-            test_tag_link.is_marked_as_checked = is_marked_as_checked
+            if is_already_know:
+                test_tag_link.is_already_know = True
+                test_tag_link.is_marked_as_checked = True
+                test_tag_link.save()
+                return CustomResponse(general_message='Mark as completed').get_success_response()
+            else:
+                test_tag_link.is_already_know = is_already_know
+                test_tag_link.is_marked_as_checked = is_marked_as_checked
             test_tag_link.save()
         else:
             TestTagListLink.objects.create(test=test, tag=tag, is_already_know=is_already_know,
