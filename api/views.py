@@ -94,7 +94,7 @@ class MarkAsChecked(APIView):
         test = Tests.objects.filter(id=test_id).first()
         test_tag_link = TestTagListLink.objects.filter(test=test, tag=tag).first()
         if test_tag_link:
-            if is_already_know == True:
+            if is_already_know == "True":
                 test_tag_link.is_already_know = True
                 test_tag_link.is_marked_as_checked = True
                 test_tag_link.save()
@@ -247,6 +247,8 @@ class GenerateRoadmapAPI(APIView):
 
         sorted_json_data = sorted(new_data, key=lambda x: sort_list.index(x["tag"]))
         return CustomResponse(response=sorted_json_data).get_success_response()
+
+
 
 # class GenerateRoadmapAPI(APIView):
 #     authentication_classes = [CustomizePermission]
