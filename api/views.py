@@ -228,7 +228,7 @@ class GenerateRoadmapAPI(APIView):
                     reference_link = key.get('reference link')
                     description = key.get('description')
                     topic = key.get('Topic')
-                    test_tag_link = TestTagListLink.objects.filter(test__id=test_id, tag__title=tag).first()
+                    test_tag_link = TestTagListLink.objects.filter(test__id=test_id, tag__title=key.get('tag')).first()
                     if test_tag_link:
                         mark_as_completed = test_tag_link.is_marked_as_checked
                         already_know = test_tag_link.is_already_know
