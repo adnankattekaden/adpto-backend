@@ -92,9 +92,15 @@ class MarkAsChecked(APIView):
         if not tag:
             return CustomResponse(general_message='Invalid Tag').get_failure_response()
         test = Tests.objects.filter(id=test_id).first()
+        test_tag_link = TestTagListLink.objects.filter(test=test, tag=tag).first()
+        if test_tag_link:
+            test_tag_link.is_already_know = is_already_know
+            test_tag_link.is_marked_as_checked = is_marked_as_checked
+            test_tag_link.save()
+        else:
+            TestTagListLink.objects.create(test=test, tag=tag, is_already_know=is_already_know,
+                                           is_marked_as_checked=is_marked_as_checked)
 
-        TestTagListLink.objects.create(test=test, tag=tag, is_already_know=is_already_know,
-                                       is_marked_as_checked=is_marked_as_checked)
         return CustomResponse(general_message='Mark as completed').get_success_response()
 
 
@@ -193,7 +199,6 @@ class GenerateRoadmapAPI(APIView):
             for answer in correct_answers:
                 if current_level == answer.get('level'):
                     removal_tags.add(answer.get('tag'))
-
 
         f = open('./data/Roadmaps/Python.json')
         roadmap = json.load(f)
