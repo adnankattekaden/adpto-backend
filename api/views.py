@@ -202,9 +202,11 @@ class GenerateRoadmapAPI(APIView):
 
         f = open('./data/Roadmaps/Python.json')
         roadmap = json.load(f)
+        sort_list = []
         for key in roadmap:
             level = key.get('level')
             tag = key.get('tag')
+            sort_list.append(tag)
             if current_level == "Advanced":
                 if level == "Advanced":
                     new_tags.add(tag)
@@ -239,7 +241,8 @@ class GenerateRoadmapAPI(APIView):
                         {'tag': tags, 'reference_link': reference_link, 'description': description, 'topic': topic,
                          'mark_as_completed': mark_as_completed, 'alreadyKnow': already_know})
 
-        return CustomResponse(response=new_data).get_success_response()
+        sorted_json_data = sorted(new_data, key=lambda x: sort_list.index(x["tag"]))
+        return CustomResponse(response=sorted_json_data).get_success_response()
 
 # class GenerateRoadmapAPI(APIView):
 #     authentication_classes = [CustomizePermission]
