@@ -17,7 +17,7 @@ def generate(answers):
         if answer.question.correct_answer.upper() != answer.answered.upper():
             wrong_questions_tags.append({
                 'id': answer.id,
-                'tag': answer.question.tags,
+                'tag': answer.question.tags.title,
                 'userAnswered': answer.answered,
                 'status': answer.status
             })
@@ -91,7 +91,7 @@ def generate_roadmap(answers):
                 'id': answer.id,
                 'tag': answer.question.tags,
                 'level': answer.question.difficulty_level,
-                'markAsCompleted':answer.status,
+                'markAsCompleted': answer.status,
                 'userAnswered': answer.answered,
                 'status': answer.status
             })

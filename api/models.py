@@ -25,6 +25,7 @@ class User(AbstractBaseUser):
     phone = models.CharField(max_length=15)
     gender = models.CharField(max_length=50)
     education = models.CharField(max_length=100)
+    age_range = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
@@ -56,6 +57,16 @@ class Tests(models.Model):
         db_table = 'tests'
 
 
+class TagsList(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200)
+    level = models.CharField(max_length=200)
+    created_at = models.DateField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'tags_list'
+
+
 class Questions(models.Model):
     id = models.AutoField(primary_key=True)
     question = models.CharField(max_length=250)
@@ -65,7 +76,7 @@ class Questions(models.Model):
     d = models.CharField(max_length=250)
     correct_answer = models.CharField(max_length=250)
     difficulty_level = models.CharField(max_length=100)
-    tags = models.CharField(max_length=100)
+    tags = models.ForeignKey(TagsList, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'questions'
@@ -82,3 +93,15 @@ class Answers(models.Model):
 
     class Meta:
         db_table = 'answers'
+
+
+class TestTagListLink(models.Model):
+    id = models.AutoField(primary_key=True)
+    tag = models.ForeignKey(TagsList, on_delete=models.CASCADE)
+    test = models.ForeignKey(Tests, on_delete=models.CASCADE)
+    is_already_know = models.BooleanField(default=False)
+    is_marked_as_checked = models.BooleanField(default=False)
+    created_at = models.DateField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'test_tag_list_link'

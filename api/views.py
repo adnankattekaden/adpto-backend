@@ -9,14 +9,13 @@ from utils.permission import CustomizePermission
 from utils.permission import JWTUtils
 from utils.response import CustomResponse
 from utils.views import TokenGenerate
-from .models import User, Questions, Answers, Tests
+from .models import User, Questions, Answers, Tests, TestTagListLink, TagsList
 from .serializers import QuestionSerializer
 
 
-# f = open('./data/questions.json')
+# f = open('./data/questions.json', encoding="utf8")
 # data = json.load(f)
 # for key in data:
-#     question_id = key.get('Question ID')
 #     question = key.get('Question')
 #     a = key.get('A')
 #     b = key.get('B')
@@ -26,9 +25,15 @@ from .serializers import QuestionSerializer
 #     level = key.get('Difficulty Level')
 #     tags = key.get('tag')
 #
-#     Questions.objects.create(question=question, a=a, b=b, c=c, d=d, correct_answer=correct_answer,
-#                              difficulty_level=level, tags=tags)
-
+#     tag = TagsList.objects.filter(title=tags).first()
+#     if tag:
+#
+#         Questions.objects.create(question=question, a=a, b=b, c=c, d=d, correct_answer=correct_answer,
+#                                  difficulty_level=level, tags=tag)
+#         print(tag)
+#     else:
+#         print(tags, level)
+#         TagsList.objects.create(title=tags, level=level)
 
 class QuestionsAPI(APIView):
     authentication_classes = [CustomizePermission]
@@ -76,10 +81,19 @@ class MarkAsChecked(APIView):
     authentication_classes = [CustomizePermission]
 
     def post(self, request):
-        answerId = request.data.get('answerId')
-        answer = Answers.objects.filter(id=answerId).first()
-        answer.status = True
-        answer.save()
+        test_id = request.data.get('testId')
+        tag_name = request.data.get('tagName')
+        is_marked_as_checked = request.data.get('isMarkedAsChecked', False)
+        is_already_know = request.data.get('isAlreadyKnow', False)
+        if None in (test_id, tag_name):
+            return CustomResponse(general_message='All fields are required').get_failure_response()
+
+        tag = TagsList.objects.filter(title=tag_name).first()
+        if not tag:
+            return CustomResponse(general_message='Invalid Tag').get_failure_response()
+        test = Tests.objects.filter(id=test_id).first()
+        TestTagListLink.objects.create(test=test, tag=tag, is_already_know=is_already_know,
+                                       is_marked_as_checked=is_marked_as_checked)
         return CustomResponse(general_message='Mark as completed').get_success_response()
 
 
@@ -114,14 +128,15 @@ class RegisterUserAPI(APIView):
         password = request.data.get('password')
         education = request.data.get('education')
         gender = request.data.get('gender')
+        age_range = request.data.get('ageRange')
 
-        if None in (name, email, phone, password, education):
+        if None in (name, email, phone, password, education, gender, age_range):
             return CustomResponse(general_message='All fields are required').get_failure_response()
 
         if User.email_exists(email):
             return CustomResponse(general_message='Email already exists').get_failure_response()
 
-        user = User(name=name, email=email, phone=phone, education=education, gender=gender)
+        user = User(name=name, email=email, phone=phone, education=education, gender=gender, age_range=age_range)
         user.set_password(password)
         user.save()
         return CustomResponse(general_message='User registered successfully').get_success_response()
@@ -217,17 +232,25 @@ class GenerateRoadmapAPI(APIView):
         for key in roadmap:
             tag = key.get('tag')
             if tag in new_tags:
-                reference_link = key.get('reference_link')
+                reference_link = key.get('reference link')
                 description = key.get('description')
                 topic = key.get('Topic')
-                mark_as_completed = False
-                already_know = False
+
+                mark_as_completed = TestTagListLink.objects.filter(
+                    test__id=test_id,
+                    tag__title=tag).first().is_marked_as_checked if TestTagListLink.objects.filter(
+                    test__id=test_id, tag__title=tag).first() else False
+
+                already_know = TestTagListLink.objects.filter(
+                    test__id=test_id,
+                    tag__title=tag).first().is_already_know if TestTagListLink.objects.filter(
+                    test__id=test_id, tag__title=tag).first() else False
                 new_data.append({
                     'tag': tag,
                     'reference_link': reference_link,
                     'description': description,
                     'topic': topic,
-                    'mark_as_completed': mark_as_completed,
+                    'markAsCompleted': mark_as_completed,
                     'alreadyKnow': already_know
                 })
 
