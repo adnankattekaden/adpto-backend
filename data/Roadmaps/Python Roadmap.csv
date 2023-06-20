@@ -1,0 +1,836 @@
+Topic,level,tag,reference link,description
+Introduction to Python,beginner,intro_1,https://www.youtube.com/embed/DInMru2Eq6E ,"Python is a high-level, interpreted, and general-purpose programming language. It was created by Guido van Rossum and first released in 1991. Python is widely used in various domains, including web development, scientific computing, artificial intelligence, machine learning, data analysis, and more. It has a simple and easy-to-learn syntax that emphasizes readability and reduces the cost of program maintenance."
+ Starting with python,beginner,intro_1_1,https://www.youtube.com/embed/rfscVS0vtbw ,"a. Download and install Python: <br>
+To get started with Python, you need to download and install it on your computer. You can download the latest version of Python from the official website. Once you've downloaded the installer, run it and follow the instructions to install Python on your machine. <br> <br>
+
+b. Choose an IDE: <br>
+Once you've installed Python, you'll need to choose an Integrated Development Environment (IDE) to write and run your Python code. An IDE is a software application that provides a comprehensive environment for writing, testing, and debugging code. Some popular IDEs for Python include PyCharm, Visual Studio Code, and Spyder. <br> <br>
+
+c. Start writing code: <br>
+After you've installed Python and an IDE, you can start writing your first Python program. Python code is typically written in text files with a .py extension. You can use your IDE to create a new Python file, write your code, and save the file."
+Python syntax and features,beginner,intro_1_2,https://www.youtube.com/embed/rfscVS0vtbw ,"a. Dynamic typing: <br>
+Python is a dynamically typed language, which means that you don't need to declare the data type of a variable when you first define it. The data type is determined automatically based on the value that is assigned to the variable. <br> <br>
+
+b. Indentation-based block structure: <br>
+Python uses indentation to define blocks of code, rather than curly braces like many other programming languages. This helps to make the code more readable and easier to understand.
+ <br> <br>
+c. Object-oriented programming: <br>
+Python supports object-oriented programming (OOP) concepts like encapsulation, inheritance, and polymorphism. OOP is a programming paradigm that is based on the concept of objects, which can contain data and methods that operate on that data. <br> <br>
+
+d. Large standard library: <br>
+Python comes with a large standard library that provides modules for various tasks like string manipulation, networking, file I/O, and more. This means that you don't need to write everything from scratch when you're building a Python program."
+Installation and setup,beginner,intro_1_3,https://www.youtube.com/embed/4pBgKEckkfo ,"a. Download and install Python: <br>
+To install Python on your computer, you need to download the installer from the official website and run it. The installer will guide you through the installation process.
+ <br> <br>
+b. Add Python to your system's PATH variable: <br>
+To run Python from the command line, you need to add Python to your system's PATH variable. This will allow you to run Python commands from any directory in your terminal.
+ <br> <br>
+c. Install an IDE: <br>
+To write and run Python code, you need an IDE. There are several popular IDEs for Python, including PyCharm, Visual Studio Code, and Spyder."
+Running Python,beginner,intro_1_4,https://www.youtube.com/embed/Qi28uPKaH_A,"a. Open your IDE and create a new Python file: <br>
+To run Python code, you first need to create a new Python file in your IDE. You can do this by opening your IDE and selecting ""New file"" or ""New Python file"" from the File menu.
+ <br> <br>
+b. Write your Python code in the file: <br>
+Once you've created a new Python file, you can start writing your Python code. Python code is typically written in text files with a .py extension.
+ <br> <br>
+c. Save the file with a .py extension: <br>
+After you've written your Python code, you need to save the file with a .py extension. This tells your IDE that the file contains Python code.
+ <br> <br>
+d. Run the file: <br>
+To run the Python code in your file, you can use your IDE's run command or run the file from the command line by typing ""python <filename>.py"" in the terminal. This will execute the code in the file and display the output in the terminal.
+
+
+
+
+
+
+"
+Variables and Data Types,beginner,vardt_2,https://www.youtube.com/embed/cQT33yu9pY8 ,"Variables and Data Types is a fundamental topic in Python programming that covers the concept of variables and data types. In Python, a variable is a named location in memory that holds a value, and data types are the kinds of values that can be stored in a variable."
+Variables and Assignments,beginner,vardt_2_1,https://www.youtube.com/embed/9mRSxUZwE8k ,"A variable is a named location in memory that holds a value. In Python, variables are created by assigning a value to them using the = operator. For example: <br> <br>
+
+x = 5 <br>
+Here, we created a variable called x and assigned it the value of 5. <br> <br>
+
+Variables can hold different types of values such as integers, floats, strings, and more complex data structures like lists and dictionaries. Once a variable is defined, you can use it in your code by referring to its name. For example: <br> <br>
+
+
+x = 5
+y = 10
+z = x + y
+print(z)  # output: 15
+ <br>
+Here, we added the values of x and y and assigned the result to z. Then we printed the value of z, which is 15."
+"Numbers,Strings,Booleans",beginner,vardt_2_2,https://www.youtube.com/embed/9y75X5sbVcw ,"Python has built-in support for various types of data, including: <br>
+a. Numbers: <br>
+In Python, there are three types of numbers: integers, floating-point numbers (floats), and complex numbers. Integers are whole numbers like 5, 100, and -3. Floats are decimal numbers like 3.14, 2.5, and -0.5. Complex numbers have a real and imaginary part, like 2+3j.
+ <br> <br>
+You can perform mathematical operations on numbers using arithmetic operators such as +, -, *, /, and %. For example:
+ <br> <br>
+
+x = 5
+y = 2
+print(x + y)   # output: 7
+print(x - y)   # output: 3
+print(x * y)   # output: 10
+print(x / y)   # output: 2.5
+print(x % y)   # output: 1
+ <br>
+b. Strings: <br>
+Strings are sequences of characters. In Python, you can create a string by enclosing a sequence of characters in quotes. You can use either single quotes '...' or double quotes ""..."". For example:
+ <br> <br>
+
+greeting = ""Hello, World!""
+name = 'John'
+You can concatenate strings using the + operator. For example:
+ <br> <br>
+
+greeting = ""Hello, "" + name
+print(greeting)   # output: Hello, John
+ <br> <br>
+You can also access individual characters in a string using indexing. In Python, indexing starts at 0, so the first character in a string is at index 0. For example:
+ <br> <br>
+
+greeting = ""Hello, World!""
+print(greeting[0])   # output: H
+print(greeting[7])   # output: W
+ <br> <br>
+c. Booleans: <br>
+Booleans are a type of data that can have one of two values: True or False. They are often used in conditional statements and loops. For example:
+ <br>
+
+x = 5
+y = 10
+print(x < y)   # output: True
+print(x == y)  # output: False"
+Type Conversion,beginner,vardt_2_3,https://www.youtube.com/embed/20WigvWJ8JA ,"Type conversion is the process of converting data from one type to another. In Python, you can use built-in functions to convert data types. For example, you can convert a string to an integer using the int() function:
+ <br> <br>
+
+my_string = '10'
+my_int = int(my_string)
+ <br>
+This will convert the string '10' to an integer with the value 10."
+Comments,beginner,vardt_2_4,https://www.youtube.com/embed/yHFcNNh-SsA ,"Comments are used to explain code and make it more readable for humans. In Python, comments start with the hash symbol (#) and continue until the end of the line. For example:
+ <br> <br>
+
+# This is a comment
+x = 5 # This is another comment
+ <br>
+Comments are ignored by the Python interpreter and have no effect on the program's execution."
+Control Flow,beginner,Ctrl_3,https://www.youtube.com/embed/n9TQZIiFiQs ,"Control Flow is a fundamental topic in Python programming that covers how to control the flow of execution in a program. Control flow structures allow you to make decisions based on conditions, repeat code until a condition is met, and control how the loops execute."
+Conditional Statements (if-else),beginner,ctrl_3_1,https://www.youtube.com/embed/sd0UDj1kmW4 ,"Conditional statements allow you to execute certain code blocks based on whether a condition is true or false. In Python, you can use the if-else statement to create conditional logic. For example: <br> <br>
+<pre><code>
+x = 5
+if x > 10:
+    print(""x is greater than 10"")
+else:
+    print(""x is less than or equal to 10"")
+</pre></code>
+Here, if x is greater than 10, the first code block will execute and print ""x is greater than 10"". Otherwise, the second code block will execute and print ""x is less than or equal to 10""."
+"Loops (for, while)",beginner,ctrl_3_2,https://www.youtube.com/embed/sd0UDj1kmW4 ,"Loops allow you to repeat code until a condition is met. In Python, you can use the for loop to iterate over a sequence of values, such as a list or a string. You can also use the while loop to repeat code until a condition is met. For example:<br>
+
+fruits = [""apple"", ""banana"", ""cherry""]
+for fruit in fruits:
+    print(fruit)
+
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+</code></pre><br>
+Here, the first code block will iterate over the list of fruits and print each one. The second code block will repeat the code inside the loop until i is no longer less than 5."
+"Loop Control Statements (break, continue)",beginner,ctrl_3_3,https://www.youtube.com/embed/gkV14SRCD-4 ,"Loop control statements allow you to control how the loops execute. In Python, you can use the break statement to exit a loop prematurely, and the continue statement to skip over a particular iteration. For example:<br>
+<pre><code>
+fruits = [""apple"", ""banana"", ""cherry""]
+for fruit in fruits:
+    if fruit == ""banana"":
+        break
+    print(fruit)
+
+i = 0
+while i < 5:
+    i += 1
+    if i == 3:
+        continue
+    print(i)
+</code></pre><br>    
+Here, the first code block will iterate over the list of fruits and print each one until it reaches ""banana"", at which point it will exit the loop. The second code block will iterate over the loop until i is equal to 3, at which point it will skip that iteration and continue to the next."
+Ternary Operators,beginner,ctrl_3_4,https://www.youtube.com/embed/icIuzMYl728 ,"Ternary operators are a shorthand way of writing simple conditional statements. In Python, you can use the ternary operator to create a one-line if-else statement. For example: <br><br>
+<pre><code>
+x = 5
+result = ""x is greater than 10"" if x > 10 else ""x is less than or equal to 10""
+print(result)
+</code></pre> <br>
+Here, if x is greater than 10, the first value will be assigned to result. Otherwise, the second value will be assigned."
+Functions                                                                                                                                                                                               ,beginner,func_4,https://www.youtube.com/embed/u-OmVr_fT4s ,"Functions is a fundamental topic in Python programming that covers how to create and use functions. A function is a block of code that performs a specific task and can be reused throughout your program. Functions help to simplify your code, make it more modular, and easier to maintain.
+"
+Defining and calling functions,beginner,func_4_1,https://www.youtube.com/embed/u-OmVr_fT4s ,"Defining a function in Python involves writing a block of code that performs a specific task, and then giving it a name that can be called later in the program. To call a function, you simply use its name followed by parentheses. For example:<br><br>
+<pre><code>
+def greet():
+    print(""Hello, world!"")
+
+greet()</code></pre><br>
+Here, we define a function called greet that prints ""Hello, world!"". We then call the function using greet()."
+Parameters and arguments                                             ,beginner,func_4_2,https://www.youtube.com/embed/i_ZEaE5vfE0,"Functions can take input parameters, which are values passed to the function when it is called. Parameters are defined in the function definition, while arguments are the values passed to the function when it is called. For example:<br><br>
+<pre><code>
+def greet(name):
+    print(""Hello, "" + name + ""!"")
+
+greet(""John"")</code></pre><br>
+Here, we define a function called greet that takes a parameter name. When the function is called with the argument ""John"", it prints ""Hello, John!""."
+Return statements,beginner,func_4_3,https://www.youtube.com/embed/nuNXiEDnM44 ,"Functions can also return values to the caller using the return statement. The value returned by the function can then be used in other parts of the program. For example:<br>
+<pre><code>
+def add(a, b):
+    return a + b
+
+result = add(2, 3)
+print(result)
+</code></pre><br>
+Here, we define a function called add that takes two parameters a and b. The function returns the sum of a and b. We then call the function with the arguments 2 and 3, and assign the result to a variable result. Finally, we print the value of result, which is 5.
+"
+Default Arguments,beginner,func_4_4,https://www.youtube.com/embed/RJW7B_DZPRo ,"Default arguments are values that are assigned to parameters when the function is defined. If the caller does not provide an argument for a parameter, the default value will be used. For example:<br><br>
+<pre><code>
+def greet(name=""world""):
+    print(""Hello, "" + name + ""!"")
+
+greet()
+greet(""John"")
+</code></pre><br>
+Here, we define a function called greet that takes a parameter name, which defaults to ""world"". When the function is called without an argument, it prints ""Hello, world!"". When the function is called with the argument ""John"", it prints ""Hello, John!"".
+"
+Variable Scope,beginner,func_4_5,https://www.youtube.com/embed/wueXfiVkw1I ,"Variable scope refers to where in the program a variable can be accessed. In Python, variables defined inside a function are not accessible outside of the function. This is known as local scope. Variables defined outside of a function are accessible both inside and outside of the function. This is known as global scope. For example:<br><br>
+<pre><code>
+def my_func():
+    x = 5
+    print(x)
+
+my_func()
+print(x)
+</code></pre><br>
+Here, we define a function called my_func that defines a local variable x. When the function is called, it prints the value of x, which is 5. However, when we try to print the value of x outside of the function, we get an error because x is not defined in the global scope."
+Data Structures,beginner,ds_5,https://www.youtube.com/embed/kQDxmjfkIKY ,"Data Structures is a crucial topic in Python programming that covers the different ways of organizing and storing data in memory. Data structures are used to represent complex data in an organized and efficient manner. Python provides built-in support for several types of data structures, including lists, tuples, dictionaries, and sets."
+Lists,beginner,ds_5_1,https://www.youtube.com/embed/9OeznAkyQz4 ,"Lists are ordered collections of items, which can be of any data type. Lists are mutable, meaning that you can add, remove, or modify elements after the list has been created. To create a list in Python, you simply enclose a comma-separated sequence of values in square brackets. For example:<br><br>
+<pre><code>
+my_list = [1, 2, ""hello"", 3.5]
+</code></pre><br>
+Here, we create a list called my_list that contains four elements: the integer 1, the integer 2, the string ""hello"", and the float 3.5."
+Tuples,beginner,ds_5_2,https://www.youtube.com/embed/DehzAA0ZIhA,"Tuples are similar to lists, but they are immutable, meaning that once a tuple is created, its contents cannot be changed. Tuples are useful for representing fixed sequences of data that should not be modified. To create a tuple in Python, you enclose a comma-separated sequence of values in parentheses. For example:<br><br>
+
+my_tuple = (1, 2, ""hello"", 3.5)</code></pre><br>
+Here, we create a tuple called my_tuple that contains the same four elements: the integer 1, the integer 2, the string ""hello"", and the float 3.5.
+"
+Dictionaries,beginner,ds_5_3,https://www.youtube.com/embed/daefaLgNkw0 DehzAA0ZIhA,"Dictionaries are unordered collections of key-value pairs, where each key is associated with a value. Dictionaries are mutable, meaning that you can add, remove, or modify key-value pairs after the dictionary has been created. To create a dictionary in Python, you enclose a comma-separated sequence of key-value pairs in curly braces, with a colon separating each key and its associated value. For example:<br><br>
+<pre><code>
+my_dict = {""name"": ""John"", ""age"": 30, ""city"": ""New York""}</code></pre><br>
+Here, we create a dictionary called my_dict that contains three key-value pairs: ""name"": ""John"", ""age"": 30, and ""city"": ""New York"".
+"
+Sets,beginner,ds_5_4,https://www.youtube.com/embed/t9j8lCUGZXo?controls=0 ,"Sets are unordered collections of unique elements, meaning that each element in a set must be unique. Sets are useful for performing operations such as union, intersection, and difference between collections of elements. To create a set in Python, you enclose a comma-separated sequence of values in curly braces. For example:<br><br><pre><code>
+
+my_set = {1, 2, 3, 4} </code></pre><br>
+Here, we create a set called my_set that contains four elements: the integers 1, 2, 3, and 4."
+Input/Output:,beginner,io_6,https://www.youtube.com/embed/ZEuQypLGUgw?controls=0 ,"The Input/Output topic in Python covers how to read input from the user, write output to the console, and write output to a file."
+"Reading input from the user
+",beginner,io_6_1,https://www.youtube.com/embed/4OX49nLNPEE?controls=0 ,"In Python, you can read input from the user using the input() function. The input() function takes a prompt string as an argument and waits for the user to enter input. For example:<br><br>
+<pre><code>
+name = input(""Enter your name: "") </code></pre><br>
+Here, we use the input() function to read a user's name and store it in the variable name. The prompt string ""Enter your name: "" is displayed to the user to prompt them to enter their name."
+Writing output to the console,beginner,io_6_2,https://www.youtube.com/embed/3lLtIlSIlYk?controls=0 ,"In Python, you can write output to the console using the print() function. The print() function takes one or more arguments and displays them in the console. For example:<br><br>
+<pre><code>
+print(""Hello, world!"") </code></pre><br>
+Here, we use the print() function to display the message ""Hello, world!"" in the console."
+Writing output to a file,beginner,io_6_3,https://www.youtube.com/embed/C0VZxhHsEvM?controls=0 ,"In Python, you can write output to a file using the open() function and the write() method. The open() function takes two arguments: the name of the file and the mode in which to open the file (e.g., read mode, write mode, append mode). The write() method is used to write data to the file. For example:<br><br>
+<pre><code>
+with open(""output.txt"", ""w"") as file:
+    file.write(""Hello, world!"") </code></pre><br>
+Here, we use the open() function to create a file called ""output.txt"" in write mode, and the write() method to write the message ""Hello, world!"" to the file. The with statement is used to automatically close the file after writing is complete."
+Object-Oriented Programming,Intermediate,oop_7,https://www.youtube.com/embed/JeznW_7DlB0?controls=0 ,"The Object-Oriented Programming (OOP) topic in Python covers the fundamental concepts of object-oriented programming such as classes, objects, inheritance, polymorphism, and encapsulation."
+"Classes and Objects
+",Intermediate,oop_7_1,https://www.youtube.com/embed/ZDa-Z5JzLYM?controls=0 ,"In Python, a class is a blueprint for creating objects that have attributes (data) and methods (functions). An object is an instance of a class. A class can have multiple objects. Classes are defined using the class keyword. For example:<br><br>
+<pre><code>
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age </code></pre><br>
+Here, we define a Person class with two attributes name and age. The __init__ method is a special method that is called when an object is created. The self parameter refers to the object itself."
+Attributes and Methods,Intermediate,oop_7_2,https://www.youtube.com/embed/rq8cL2XMM5M?controls=0 ,"An attribute is a piece of data that belongs to an object. A method is a function that belongs to an object. Attributes and methods are defined inside a class. For example:<br><br>
+<pre><code>
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def say_hello(self):
+        print(""Hello, my name is "" + self.name) </code></pre><br>
+Here, we define a say_hello() method that prints a message that includes the name attribute of the object."
+Inheritance,Intermediate,oop_7_3,https://www.youtube.com/embed/RSl87lqOXDE?controls=0 ,"Inheritance is the process of creating a new class by deriving properties from an existing class. The new class is called the child class or derived class, and the existing class is called the parent class or base class. The child class inherits all the attributes and methods of the parent class. For example:<br><br>
+<pre><code>
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        self.student_id = student_id </code></pre><br>
+Here, we define a Student class that inherits from the Person class. The super() function is used to call the __init__ method of the parent class."
+Polymorphism,Intermediate,oop_7_4,https://www.youtube.com/embed/pii3hAksya0?controls=0 ,"Polymorphism is the ability of objects of different classes to be used interchangeably. Polymorphism allows you to write code that can work with objects of different classes, as long as those objects share a common interface. For example:<br><br>
+<pre><code>
+class Dog:
+    def speak(self):
+        print(""Woof!"")
+
+class Cat:
+    def speak(self):
+        print(""Meow!"")
+
+def make_animal_speak(animal):
+    animal.speak()
+
+dog = Dog()
+cat = Cat()
+
+make_animal_speak(dog)
+make_animal_speak(cat)</code></pre><br>
+Here, we define a Dog class and a Cat class that both have a speak() method. We also define a make_animal_speak() function that takes an animal parameter and calls its speak() method. We create a Dog object and a Cat object, and pass them to the make_animal_speak() function."
+Encapsulation,Intermediate,oop_7_5,https://www.youtube.com/embed/TFLo9m0jFEg?controls=0 ,"Encapsulation is the process of hiding the implementation details of an object and only exposing its public interface. Encapsulation allows you to write code that is easier to understand and maintain. In Python, encapsulation is achieved by using naming conventions to indicate the public and private attributes and methods of a class. For example:<br><br>
+<pre><code>
+class BankAccount:
+    def __init__(self, balance):
+        self._balance = balance
+    
+    def deposit(self, amount):
+        self._balance += amount
+    
+    def withdraw(self, amount):
+        if self._balance >= amount:
+            self._balance -= amount
+</code></pre>"
+Modules and Packages,Intermediate,mod_8,https://www.youtube.com/embed/UK97NoQK23k?controls=0 ,"Modules and packages are essential concepts in Python that help programmers organize, reuse, and share their code. A module is a file that contains Python code and defines functions, classes, and variables that can be used in other Python programs. On the other hand, a package is a collection of modules that are organized in a directory hierarchy."
+Importing Modules,Intermediate,mod_8_1,https://www.youtube.com/embed/GxCXiSkm6no?controls=0 ,"The import statement is used to load a module into a Python program. The basic syntax for importing a module is import module_name. Once a module is imported, its functions, classes, and variables can be accessed using the dot notation, like module_name.function_name(). The study material will cover different ways of importing modules, such as importing specific functions or importing with an alias. It will also discuss the importance of using relative and absolute imports and how to handle import errors.
+"
+"Creating Modules
+",Intermediate,mod_8_2,https://www.youtube.com/embed/sKYiQLRe254?controls=0 ,"A module is a file that contains Python code and defines functions, classes, and variables that can be used in other Python programs. The study material will cover how to create a Python module from scratch, including how to define functions, classes, and variables. It will also discuss best practices for naming conventions, documentation, and code organization."
+Package Organization,Intermediate,mod_8_3,https://www.youtube.com/embed/tEFkHEKypLI?controls=0 ,"A package is a collection of modules that are organized in a directory hierarchy. The study material will cover how to organize a collection of modules into a package, including the directory structure of a package and how to create a __init__.py file to make a directory a Python package. It will also discuss how to use relative and absolute imports within a package and how to create sub-packages."
+Installing Packages,Intermediate,mod_8_4,https://www.youtube.com/embed/SrX5yo4KKGM?controls=0 ,"The Python Package Index (PyPI) is a repository of third-party packages that can be installed using package managers such as pip. The study material will cover how to install and use third-party packages using pip, including how to create a requirements.txt file to specify package dependencies. It will also discuss how to use virtual environments to manage package installations and avoid conflicts with other Python programs."
+Regular Expression,Intermediate,regex_9,https://www.youtube.com/embed/wnuBwl2ekmo?controls=0 ,"Regular expressions (often abbreviated as ""regex"" or ""regexp"") are a powerful tool for matching and manipulating text. They are used in many programming languages, including Python, to search for patterns in strings and perform text manipulation."
+Matching Pattern,Intermediate,regex_9_1,https://www.youtube.com/embed/scNNi4860kk?controls=0 ,"A regular expression pattern is a sequence of characters that define a search pattern. When applied to a string, the pattern matches any part of the string that matches the pattern.<br><br>
+
+For example, the regular expression ab*c matches any string that contains an a followed by zero or more b characters, followed by a c. This pattern would match strings like ""ac"", ""abc"", ""abbc"", ""abbbbc"", and so on.
+"
+Regular Expression Syntax,Intermediate,regex_9_2,https://www.youtube.com/embed/scNNi4860kk?controls=0,"Regular expressions have their own syntax, which can be complex and difficult to read. However, once you learn the basics, you'll find that they can be a powerful tool for working with text.
+<br><br>
+Here are some common syntax elements used in regular expressions:<br><br>
+
+. (period): matches any single character except newline.
+*: matches zero or more of the previous character.
++: matches one or more of the previous character.
+?: matches zero or one of the previous character.
+[]: matches any character inside the brackets.
+^: matches the beginning of the string.
+$: matches the end of the string.
+\: escape character, used to match special characters like . or *.
+"
+Finding Matches,Intermediate,regex_9_3,https://www.youtube.com/embed/scNNi4860kk?controls=0 ,Python's re module provides functions for finding matches in strings using regular expressions. The study material will cover how to use the search() function to find the first occurrence of a pattern in a string and the findall() function to find all occurrences of a pattern in a string. It will also cover how to use grouping with parentheses to extract specific parts of a matched string.
+Replacing Text,Intermediate,regex_9_4,https://www.youtube.com/embed/scNNi4860kk?controls=0 ,"In addition to finding matches, regular expressions can also be used to replace text in strings. The study material will cover how to use the sub() function to replace all occurrences of a pattern in a string with a specified replacement string. It will also cover how to use backreferences to refer to groups in the matched pattern in the replacement string."
+Error Handling,Intermediate,errhand_10,https://www.youtube.com/embed/NIWwJbo-9_8?controls=0 ,"Error handling is an important aspect of writing robust and reliable programs in Python. Errors and exceptions can occur in your program due to various reasons, such as incorrect input, network failures, or hardware malfunctions. By handling these errors effectively, you can ensure that your program continues to function as expected and provides useful feedback to users."
+Handling exceptions and errors,Intermediate,errhand_10_1,https://www.youtube.com/embed/-_uNayxaQoU?controls=0,"Python provides a mechanism to handle errors and exceptions in your code. An exception is an error that occurs during the execution of your program. When an exception occurs, Python stops the normal flow of execution and raises an exception object, which contains information about the error.<br><br>
+
+There are many built-in exceptions in Python, such as ValueError, TypeError, and IOError. You can also create custom exceptions by defining new exception classes.
+"
+Using try/except blocks,Intermediate,errhand_10_2,https://www.youtube.com/embed/NIWwJbo-9_8?controls=0 ,"The most common way to handle exceptions in Python is to use a try/except block. The try block contains the code that might raise an exception, and the except block contains the code that handles the exception.
+<br><br>
+Here's an example:<br><br>
+
+<pre><code>
+try:
+    # Code that might raise an exception
+    x = int(input(""Enter a number: ""))
+    y = int(input(""Enter another number: ""))
+    result = x / y
+    print(result)
+except ValueError:
+    # Code to handle a ValueError exception
+    print(""Invalid input. Please enter a number."")
+except ZeroDivisionError:
+    # Code to handle a ZeroDivisionError exception
+    print(""Cannot divide by zero."") </code></pre><br>
+In this example, the try block contains code that prompts the user to enter two numbers, divides them, and prints the result. If the user enters invalid input or tries to divide by zero, the corresponding exception is raised and the except block handles the exception by printing an error message. <br><br>
+
+You can also use a finally block to run cleanup code after the try and except blocks. The finally block is always executed, regardless of whether an exception is raised or not.<br><br>
+<pre><code>
+try:
+    # Code that might raise an exception
+    x = int(input(""Enter a number: ""))
+    y = int(input(""Enter another number: ""))
+    result = x / y
+    print(result)
+except ValueError:
+    # Code to handle a ValueError exception
+    print(""Invalid input. Please enter a number."")
+except ZeroDivisionError:
+    # Code to handle a ZeroDivisionError exception
+    print(""Cannot divide by zero."")
+finally:
+    # Cleanup code that is always executed
+    print(""Program finished."") </code></pre><br>
+In this example, the finally block contains code that is always executed after the try and except blocks, regardless of whether an exception is raised or not.
+"
+Debugging,Intermediate,debug_11,https://www.youtube.com/embed/4jRfXluDmKY?controls=0 ,"Debugging is the process of identifying and fixing errors or bugs in your code. It is an essential skill for any programmer, as errors can occur at any time during the development process, and finding and fixing them can be a time-consuming and frustrating task."
+Debugging techniques,Intermediate,debug_11_1,https://www.youtube.com/embed/-oUA02xsojM?controls=0,"There are many techniques you can use to debug your Python code, including:<br><br>
+
+Reading error messages: When an error occurs, Python provides an error message that contains information about the error, such as the line number where the error occurred and the type of error. By reading the error message carefully, you can often identify the cause of the error.<br><br>
+
+Using a debugger: A debugger is a tool that allows you to step through your code line by line, examine variables, and see the state of your program at any point during execution. Python provides a built-in debugger called pdb, which you can use to debug your code.<br><br>
+
+Testing individual components: One effective debugging technique is to test individual components of your code, such as functions or classes, in isolation from the rest of your program. By testing individual components, you can identify and fix errors more easily.<br><br>
+
+Divide and conquer: If you have a large codebase or a complex program, it can be helpful to divide it into smaller parts and test each part separately. This can make it easier to isolate and fix errors.
+"
+Using print statements and logging,Intermediate,debug_11_2,https://www.youtube.com/embed/gsa1oFn9n0M?controls=0 ,"One of the most common and effective debugging techniques is to use print statements or logging to output information about the state of your program at different points during execution. You can use print statements to output the values of variables, the results of function calls, and other information that can help you identify the cause of an error.<br><br>
+
+Here's an example:<br><br>
+
+<pre><code>
+def divide(x, y):
+    print(""Dividing {} by {}"".format(x, y))
+    result = x / y
+    print(""Result: {}"".format(result))
+    return result
+
+a = 10
+b = 2
+c = divide(a, b)
+print(""Final result: {}"".format(c)) </code></pre><br>
+In this example, the divide function takes two arguments and prints the values of those arguments before dividing them. It also prints the result of the division before returning it. By using print statements, you can see the values of x, y, and result at each step of the function, which can help you identify any errors.
+<br><br>
+Logging is a more sophisticated way to output information about your program's state during execution. The logging module provides a way to log messages with different levels of severity, such as debug, info, warning, error, and critical. You can use logging to output information about your program's state to a file or to the console, and you can configure logging to control the level of detail that is output.
+<br><br>
+Here's an example:
+<br><br>
+<pre><code>
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+def divide(x, y):
+    logging.debug(""Dividing {} by {}"".format(x, y))
+    result = x / y
+    logging.debug(""Result: {}"".format(result))
+    return result
+
+a = 10
+b = 2
+c = divide(a, b)
+logging.info(""Final result: {}"".format(c)) </code></pre><br>
+In this example, we've added logging statements to the divide function, using the logging.debug method to output information about the state of the program at each step. We've also configured the logging module to output messages at the DEBUG level, which means that all messages with a severity of DEBUG or higher will be output. Finally, we've used the logging.info method to output the final result of the division."
+Advanced OOP,Intermediate,advoop_12,https://www.youtube.com/embed/waUVA9K2CYg?controls=0 ,"Object-oriented programming (OOP) is a programming paradigm that is based on the concept of objects, which can contain data and methods that manipulate that data. In Python, OOP is a core part of the language, and it provides powerful features for organizing and structuring your code."
+Abstract classes and interfaces,Intermediate,advoop_12_1,https://www.youtube.com/embed/UDmJGvM-OUw?controls=0 ,"An abstract class is a class that is intended to be subclassed but not instantiated. It is often used to define a common interface for a group of related classes. An abstract class can contain abstract methods, which are methods that are declared but not implemented in the abstract class. Instead, the implementation of the abstract methods is left to the subclasses.<br><br>
+
+Here's an example:<br><br>
+
+<pre><code>
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2 </code></pre><br>
+In this example, the Shape class is an abstract class that defines an abstract method area(). The Rectangle and Circle classes are subclasses of Shape that implement the area() method. Because Shape is an abstract class, it cannot be instantiated, but it provides a common interface for the Rectangle and Circle classes.
+<br><br>
+An interface is similar to an abstract class, but it only defines a set of method signatures, without providing any implementation. In Python, interfaces are often implemented using abstract classes with only abstract methods."
+Multiple inheritance and mixins,Intermediate,advoop_12_2,https://www.youtube.com/embed/-S64lo4Ynb8?controls=0  ,"Multiple inheritance is the ability to inherit from multiple parent classes. In Python, a subclass can inherit from multiple parent classes by listing them in parentheses after the class name.<br><br>
+
+Here's an example:<br><br><br>
+
+<pre><code>
+class A:
+    def foo(self):
+        print(""A foo"")
+
+class B:
+    def foo(self):
+        print(""B foo"")
+
+class C(A, B):
+    pass
+
+c = C()
+c.foo() # prints ""A foo"" </code></pre><br>
+In this example, the C class inherits from both A and B. When the foo() method is called on an instance of C, it calls the implementation of foo() in A, because A is listed before B in the list of parent classes.
+<br><br>
+A mixin is a special type of class that is intended to be used in multiple inheritance. A mixin is a class that provides a specific functionality, such as logging or serialization, that can be added to other classes by inheriting from the mixin.
+<br><br>
+Here's an example:<br><br>
+<pre><code>
+class LoggingMixin:
+    def log(self, message):
+        print(""{}: {}"".format(type(self).__name__, message))
+
+class MyClass(LoggingMixin):
+    def foo(self):
+        self.log(""doing foo"")
+
+c = MyClass()
+c.foo() # prints ""MyClass: doing foo"" </code></pre><br>
+In this example, the LoggingMixin class provides a log() method that can be used to log messages. The MyClass class inherits from LoggingMixin, so it can use the log() method to log messages."
+"Decorators and metaclasses
+",Advanced,advoop_12_3,https://www.youtube.com/embed/00acMGEfVlo?controls=0 ,"Decorators are a way of modifying or extending the behavior of a function or a class without modifying the original implementation. They provide a simple way to add functionality to existing code.<br><br>
+
+A decorator is a function that takes another function as input, and returns a new function that adds some extra behavior to the original function. In Python, the @ symbol is used to apply a decorator to a function or a class. Here's an example of a decorator that adds logging to a function:<br><br>
+
+<pre><code>
+def log(func):
+    def wrapper(*args, **kwargs):
+        print(f""Function {func.__name__} called with arguments {args} {kwargs}"")
+        return func(*args, **kwargs)
+    return wrapper
+
+@log
+def add(a, b):
+    return a + b
+
+result = add(2, 3)
+# Output: Function add called with arguments (2, 3) {}
+#         5</code></pre><br>
+In this example, the log() function is a decorator that takes a function as input and returns a new function wrapper(), which logs the name of the function and its arguments, and then calls the original function. The @log syntax is used to apply the decorator to the add() function.
+<br><br>
+A metaclass is a special class that defines the behavior of other classes. It is a class that creates classes. Every class in Python is an instance of a metaclass, by default the metaclass is type. By defining a custom metaclass, you can modify the behavior of classes that are created using that metaclass.
+<br><br>
+Here's an example of a metaclass that modifies the behavior of a class by automatically adding a method to it:
+<br><br>
+<pre><code>
+    def __new__(cls, name, bases, attrs):
+        attrs['hello'] = lambda self: print(f""Hello, {self.name}!"")
+        return super().__new__(cls, name, bases, attrs)
+
+class MyClass(metaclass=MyMeta):
+    def __init__(self, name):
+        self.name = name
+
+obj = MyClass(""John"")
+obj.hello()
+# Output: Hello, John!</code></pre><br>
+In this example, the MyMeta class is a metaclass that defines the behavior of the MyClass class. The __new__() method of the metaclass is called when the MyClass class is created, and it adds a new method hello() to the class. When an instance of the MyClass class is created, the hello() method can be called to print a greeting message."
+Concurrency and Parallelism,Advanced,conpar_13,https://www.youtube.com/embed/ltTQaMSk6ME?controls=0 ,"Concurrency and parallelism are two concepts in computer science that are used to improve the performance of programs by executing multiple tasks simultaneously. In Python, there are several ways to achieve concurrency and parallelism, including multithreading, multiprocessing, and asynchronous programming."
+Multithreading and multiprocessing,Advanced,conpar_13_1,https://www.youtube.com/embed/AZnGRKFUU0c?controls=0 ,"Multithreading and multiprocessing are two ways to achieve parallelism in Python. Multithreading involves running multiple threads within a single process, while multiprocessing involves running multiple processes simultaneously.
+<br><br>
+In Python, the threading module provides a way to create and manage threads, while the multiprocessing module provides a way to create and manage processes. Here's an example of how to create a thread in Python:
+<br><pre><code>
+import threading
+
+def worker():
+    print(""Worker thread started"")
+    # do some work here
+    print(""Worker thread finished"")
+
+t = threading.Thread(target=worker)
+t.start()
+t.join()
+print(""Main thread finished"") </code></pre>
+In this example, the worker() function is run in a separate thread using the Thread class from the threading module. The start() method is called to start the thread, and the join() method is called to wait for the thread to finish before the main thread exits."
+Asynchronous programming with async/await,Advanced,conpar_13_2,https://www.youtube.com/embed/t5Bo1Je9EmE?controls=0 ,"Asynchronous programming is a way of achieving concurrency without using threads or processes. Instead, it uses coroutines, which are functions that can be paused and resumed later. In Python, asynchronous programming is implemented using the asyncio module, which provides a way to create and manage coroutines.<br><br>
+
+Here's an example of how to create a coroutine in Python:<br><pre><code>
+import asyncio
+
+async def worker():
+    print(""Worker coroutine started"")
+    # do some work here
+    await asyncio.sleep(1)
+    print(""Worker coroutine finished"")
+
+async def main():
+    print(""Main coroutine started"")
+    task = asyncio.create_task(worker())
+    # do some other work here
+    await task
+    print(""Main coroutine finished"")
+
+asyncio.run(main())</code></pre><br>
+In this example, the worker() function is defined as a coroutine using the async keyword, and the await keyword is used to pause the coroutine while waiting for a task to complete. The main() function is also defined as a coroutine, and it creates a task using the create_task() method from the asyncio module. The run() function from the asyncio module is used to run the main coroutine."
+Distributed computing with Python,Advanced,conpar_13_3,https://www.youtube.com/embed/q_aTbb7XeL4?controls=0 ,"Distributed computing is a way of achieving parallelism by distributing tasks across multiple machines on a network. In Python, there are several libraries and frameworks available for distributed computing, including Celery, Dask, and Pyro.
+<br><br>
+Here's an example of how to use Celery to distribute tasks across multiple machines:
+<br><pre><code>
+from celery import Celery
+
+app = Celery('tasks', broker='pyamqp://guest@localhost//')
+
+@app.task
+def add(x, y):
+    return x + y </code></pre><br>
+In this example, the Celery object is created with a broker URL that specifies the message broker used to communicate between machines. The @app.task decorator is used to define a task function that can be executed on a remote machine. The add() function takes two arguments and returns their sum."
+GUI Programming,Advanced,gui_14,https://www.youtube.com/embed/ibf5cx221hk?controls=0 ,"GUI (Graphical User Interface) programming is a way of creating interactive applications that have a visual interface. In Python, there are several GUI libraries available, including Tkinter, PyQT, and PyGTK."
+"Using GUI libraries like Tkinter, PyQT, and PyGTK",Advanced,gui_14_1,https://www.youtube.com/embed/ibf5cx221hk?controls=0,"Tkinter<br><br>
+Tkinter is a built-in GUI library for Python that is used to create simple GUI applications. It provides a set of widgets, such as buttons, labels, and text boxes, that can be arranged in a layout to create a user interface. Here's an example of how to create a simple GUI application using Tkinter:
+<br><br><pre><code>
+import tkinter as tk
+
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.pack()
+        self.create_widgets()
+
+    def create_widgets(self):
+        self.hello_label = tk.Label(self, text=""Hello, world!"")
+        self.hello_label.pack(side=""top"")
+
+        self.quit_button = tk.Button(self, text=""Quit"", command=self.master.destroy)
+        self.quit_button.pack(side=""bottom"")
+
+root = tk.Tk()
+app = Application(master=root)
+app.mainloop()</code></pre><br>
+In this example, the Application class is defined, which inherits from the tk.Frame class. The __init__() method is called when an object of the Application class is created, and it creates the widgets for the user interface. The create_widgets() method creates the Label and Button widgets using the tk.Label and tk.Button classes, respectively.
+<br><br><br>
+PyQT<br><br>
+PyQT is a popular GUI library for Python that provides a comprehensive set of widgets and tools for creating GUI applications. It is based on the Qt toolkit, which is a cross-platform GUI toolkit. Here's an example of how to create a simple GUI application using PyQT:
+<br><br><pre><code>
+import sys
+from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget
+
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle(""Hello, World!"")
+        self.label = QLabel(""Hello, World!"")
+        self.button = QPushButton(""Quit"")
+        self.button.clicked.connect(self.close)
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
+        layout.addWidget(self.button)
+        self.setLayout(layout)
+
+if __name__ == ""__main__"":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())</code></pre><br>
+In this example, the MainWindow class is defined, which inherits from the QWidget class. The __init__() method is called when an object of the MainWindow class is created, and it creates the widgets for the user interface. The QLabel and QPushButton classes are used to create the label and button widgets, respectively. The QVBoxLayout class is used to arrange the widgets in a vertical layout.
+<br><br><br>
+PyGTK<br><br>
+PyGTK is a GUI library for Python that provides a set of widgets and tools for creating GUI applications using the GTK toolkit. Here's an example of how to create a simple GUI application using PyGTK:
+<br><br><pre><code>
+import gtk
+
+class HelloWorld:
+    def __init__(self):
+        self.window = gtk.Window()
+        self.window.set_title(""Hello, World!"")
+        self.label = gtk.Label(""Hello, World!"")
+        self.button = gtk.Button(""Quit"")
+        self.button.connect(""clicked"", self.quit)
+        self.window.add(self.label)
+        self.window.add(self.button)
+        self.window.show_all()
+
+    def quit(self, widget, data=None):
+        gtk.main_quit()
+
+if __name__ == ""__main__"":
+    HelloWorld()</code></pre>"
+Data Science and Machine Learning,Advanced,dataml_15,https://www.youtube.com/embed/7eh4d6sabA0?controls=0 ,"Python has become a popular language for data science and machine learning due to its wide range of libraries and tools that are available for these domains. Here are some of the most commonly used libraries and tools for data manipulation, data visualization, and machine learning in Python."
+NumPy and pandas for data manipulation,Advanced,dataml_15_1,https://www.youtube.com/embed/FniLzpaSFGk?controls=0 ,"
+NumPy is a library for Python that is used for scientific computing. It provides a multi-dimensional array object, as well as functions for mathematical operations on arrays. NumPy is commonly used for data manipulation, as it provides efficient methods for working with large datasets. Here's an example of how to use NumPy to create and manipulate an array:<br><br>
+<pre><code>
+import numpy as np
+
+# Create a 2-dimensional array
+a = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Print the array
+print(a)
+
+# Select a subset of the array
+b = a[:, 1]
+
+# Print the subset
+print(b)
+
+# Perform a mathematical operation on the array
+c = a * 2
+
+# Print the result
+print(c)
+</code></pre>
+<br><br><br>
+Pandas is a library for Python that is used for data manipulation and analysis. It provides a DataFrame object, which is a 2-dimensional table that can be used to store and manipulate data. Pandas is commonly used for data preprocessing and cleaning, as well as for data analysis. Here's an example of how to use Pandas to load and manipulate a dataset:
+<br><br>
+<pre><code>
+import pandas as pd
+
+# Load a dataset from a CSV file
+df = pd.read_csv(""data.csv"")
+
+# Print the first 5 rows of the dataset
+print(df.head())
+
+# Select a subset of the dataset
+subset = df.loc[(df[""Age""] > 18) & (df[""Gender""] == ""Female"")]
+
+# Print the subset
+print(subset)
+
+# Calculate the mean of a column in the dataset
+mean = df[""Height""].mean()
+
+# Print the mean
+print(mean)</code></pre>"
+Matplotlib and Seaborn for data visualization,Advanced,dataml_15_2,https://www.youtube.com/embed/J4rD_we9VMc?controls=0 ,"Matplotlib is a library for Python that is used for data visualization. It provides a wide range of tools for creating various types of plots and charts, including line plots, scatter plots, bar charts, and histograms. Here's an example of how to use Matplotlib to create a simple line plot:<br><br>
+<pre><code>
+import matplotlib.pyplot as plt
+
+# Create some data
+x = [1, 2, 3, 4]
+y = [1, 4, 9, 16]
+
+# Create a line plot
+plt.plot(x, y)
+
+# Add labels and a title to the plot
+plt.xlabel(""X-axis"")
+plt.ylabel(""Y-axis"")
+plt.title(""Line Plot"")
+
+# Display the plot
+plt.show()
+</code></pre><br><br><br>
+Seaborn is a library for Python that is built on top of Matplotlib and provides a higher-level interface for creating statistical graphics. It provides tools for creating various types of plots and charts, including heatmaps, violin plots, and regression plots. Here's an example of how to use Seaborn to create a scatter plot with a regression line:
+<br><br>
+<pre><code>
+import seaborn as sns
+import pandas as pd
+
+# Load a dataset from a CSV file
+df = pd.read_csv(""data.csv"")
+
+# Create a scatter plot with a regression line
+sns.regplot(x=""Height"", y=""Weight"", data=df)
+
+# Add labels and a title to the plot
+plt.xlabel(""Height"")
+plt.ylabel(""Weight"")
+plt.title(""Scatter Plot with Regression Line"")
+
+# Display the plot
+plt.show()</code></pre>"
+"Scikit-learn and TensorFlow for machine learning
+",Advanced,dataml_15_3,"https://www.youtube.com/embed/pqNCD_5r0IU?controls=0"" ","Scikit-Learn is a popular machine learning library for Python that provides a wide range of tools for data mining and analysis. It includes a variety of algorithms for classification, regression, clustering, and dimensionality reduction. Here's an example of how to use Scikit-Learn to train a simple linear regression model:<br><br>
+<pre><code>
+from sklearn.linear_model import LinearRegression
+import pandas as pd
+
+# Load a dataset from a CSV file
+df = pd.read_csv(""data.csv"")
+
+# Create a feature matrix and a target vector
+X = df[[""Height""]]
+y = df[""Weight""]
+
+# Create a linear regression model
+model = LinearRegression()
+
+# Fit the model to the data
+model.fit(X, y)
+
+# Predict the weight for a given height
+height = 175
+weight = model.predict([[height]])
+print(""Weight for height {}: {}"".format(height, weight))
+</code></pre><br><br><br>
+TensorFlow is a popular deep learning library for Python that provides a wide range of tools for building and training neural networks. It includes a variety of tools for data preprocessing, model building, and training. Here's an example of how to use TensorFlow to build a simple neural network for image classification:
+<br><br>
+<pre><code>
+import tensorflow as tf
+import numpy as np
+import pandas as pd
+
+# Load a dataset of images from a CSV file
+df = pd.read_csv(""data.csv"")
+X = np.array(df.iloc[:, :-1])
+y = np.array(df.iloc[:, -1])
+
+# Normalize the pixel values
+X = X / 255.0
+
+# Define the neural network architecture
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Flatten(input_shape=(28, 28)),
+  tf.keras.layers.Dense(128, activation='relu'),
+  tf.keras.layers.Dense(10)
+])
+
+# Compile the model
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+
+# Train the model
+model.fit(X, y, epochs=10)
+
+# Predict the class of a new image
+image = np.random.rand(28, 28)
+image = np.expand_dims(image, 0)
+class_probs = model.predict(image)
+class_index = np.argmax(class_probs)
+print(""Predicted class index: {}"".format(class_index))</code></pre>"
+Web Development,Advanced,web_16,https://www.youtube.com/embed/dam0GPOAvVI?controls=0,"Web development using Python is a popular choice for building dynamic, interactive web applications. Python provides a number of tools and frameworks for building web applications, including Flask, Django, Pyramid, and more."
+Using web frameworks like Flask and Django,Advanced,web_16_1,https://www.youtube.com/embed/zuxzE7--RYM?controls=0 ,"Web frameworks like Flask and Django provide developers with a set of tools and libraries to build web applications more quickly and efficiently. Flask is a lightweight and flexible web framework that is often used for smaller projects, while Django is a more comprehensive web framework that is used for larger, more complex projects. Here's an example of how to use Flask to build a simple web application:<br><br>
+<pre><code>
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route(""/"")
+def index():
+    return render_template(""index.html"")
+
+@app.route(""/about"")
+def about():
+    return render_template(""about.html"")
+
+if __name__ == ""__main__"":
+    app.run()</code></pre>"
+Building REST APIs with Python,Advanced,web_16_2,https://www.youtube.com/embed/GN6ICac3OXY?controls=0,"REST APIs are a popular way to build web services that can be consumed by other applications. Python provides a number of libraries and frameworks for building REST APIs, including Flask and Django. Here's an example of how to use Flask to build a simple REST API:<br><br>
+<pre><code>
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route(""/api/users"")
+def get_users():
+    users = [
+        {""id"": 1, ""name"": ""Alice""},
+        {""id"": 2, ""name"": ""Bob""},
+        {""id"": 3, ""name"": ""Charlie""}
+    ]
+    return jsonify(users)
+
+if __name__ == ""__main__"":
+    app.run() </code></pre>"
+"Using HTML, CSS, and JavaScript with Python",Advanced,web_16_3,https://www.youtube.com/embed/Zq7TQTabG34?controls=0 ,"Python can also be used for front-end web development, in conjunction with HTML, CSS, and JavaScript. The Flask and Django frameworks provide tools for generating HTML pages and serving them to clients, while libraries like Jinja2 provide templates for generating dynamic content. Here's an example of how to use Flask and Jinja2 to generate a dynamic HTML page:<br><br>
+
+<pre><code>
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route(""/"")
+def index():
+    name = ""Alice""
+    return render_template(""index.html"", name=name)
+
+if __name__ == ""__main__"":
+    app.run() </code></pre>"

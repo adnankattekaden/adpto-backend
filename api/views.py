@@ -1,8 +1,10 @@
+import json
+
 from django.contrib.auth import authenticate
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
-from api.generate import generate
+from api.generate import generate, generate_roadmap
 from utils.permission import CustomizePermission
 from utils.permission import JWTUtils
 from utils.response import CustomResponse
@@ -26,7 +28,7 @@ from .serializers import QuestionSerializer
 #
 #     Questions.objects.create(question=question, a=a, b=b, c=c, d=d, correct_answer=correct_answer,
 #                              difficulty_level=level, tags=tags)
-#
+
 
 class QuestionsAPI(APIView):
     authentication_classes = [CustomizePermission]
@@ -139,9 +141,94 @@ class LoginAPI(APIView):
             return CustomResponse(general_message="login failed").get_failure_response()
 
 
+# class GenerateRoadmapAPI(APIView):
+#     authentication_classes = [CustomizePermission]
+#
+#     def get(self, request, test_id):
+#         test = Tests.objects.filter(id=test_id).first()
+#         answers = Answers.objects.filter(test=test)
+#         result = generate_roadmap(answers)
+#         current_level = result.get('proficiencyLevel')
+#         correct_answers = result.get('correct_answer')
+#
+#         new_tags = set()
+#         removal_tags = set()
+#         if current_level == "Advanced":
+#             for answer in correct_answers:
+#                 if current_level == answer.get('level'):
+#                     removal_tags.add(answer.get('tag'))
+#
+#         f = open('./data/Roadmaps/Python.json')
+#         roadmap = json.load(f)
+#         for key in roadmap:
+#             level = key.get('level')
+#             tag = key.get('tag')
+#             if current_level == level:
+#                 new_tags.add(tag)
+#
+#         for tag in removal_tags:
+#             new_tags.discard(tag)
+#
+#         new_data = []
+#         for key in roadmap:
+#             for tags in new_tags:
+#                 if tags == key.get('tag'):
+#                     reference_link = key.get('reference_link')
+#                     description = key.get('description')
+#                     topic = key.get('Topic')
+#                     mark_as_completed = False
+#                     already_know = False
+#                     new_data.append(
+#                         {'tag': tags, 'reference_link': reference_link, 'description': description, 'topic': topic,
+#                          'mark_as_completed': mark_as_completed, 'alreadyKnow': already_know})
+#
+#         return CustomResponse(response=new_data).get_success_response()
+
 class GenerateRoadmapAPI(APIView):
     authentication_classes = [CustomizePermission]
 
-    def get(self, request):
-        print('e')
-        return CustomResponse(general_message='hye').get_success_response()
+    def get(self, request, test_id):
+        test = Tests.objects.filter(id=test_id).first()
+        answers = Answers.objects.filter(test=test)
+        result = generate_roadmap(answers)
+        current_level = result.get('proficiencyLevel')
+        correct_answers = result.get('correct_answer')
+
+        new_tags = set()
+        removal_tags = {}
+        if current_level == "Advanced":
+            for answer in correct_answers:
+                if current_level == answer.get('level'):
+                    removal_tags[answer.get('tag')] = True
+
+        with open('./data/Roadmaps/Python.json') as f:
+            roadmap = json.load(f)
+
+        for key in roadmap:
+            level = key.get('level')
+            tag = key.get('tag')
+            if current_level == level:
+                new_tags.add(tag)
+
+        for tag in removal_tags.keys():
+            new_tags.discard(tag)
+
+        new_data = []
+        for key in roadmap:
+            tag = key.get('tag')
+            if tag in new_tags:
+                reference_link = key.get('reference_link')
+                description = key.get('description')
+                topic = key.get('Topic')
+                mark_as_completed = False
+                already_know = False
+                new_data.append({
+                    'tag': tag,
+                    'reference_link': reference_link,
+                    'description': description,
+                    'topic': topic,
+                    'mark_as_completed': mark_as_completed,
+                    'alreadyKnow': already_know
+                })
+
+        return CustomResponse(response=new_data).get_success_response()

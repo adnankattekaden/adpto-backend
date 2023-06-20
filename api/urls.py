@@ -12,6 +12,6 @@ urlpatterns = [
     path('mark-as-checked/', MarkAsChecked.as_view()),
     path('create-test/', CreateTestAPI.as_view()),
     path('info/', UserInfo.as_view()),
-    path('generate-roadmap/', GenerateRoadmapAPI.as_view()),
+    path('generate-roadmap/<str:test_id>/', GenerateRoadmapAPI.as_view()),
 
 ]
