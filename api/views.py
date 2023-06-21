@@ -13,6 +13,7 @@ from .models import User, Questions, Answers, Tests, TestTagListLink, TagsList
 from .serializers import QuestionSerializer
 
 
+#
 # f = open('./data/questions.json', encoding="utf8")
 # data = json.load(f)
 # for key in data:
@@ -27,13 +28,12 @@ from .serializers import QuestionSerializer
 #
 #     tag = TagsList.objects.filter(title=tags).first()
 #     if tag:
-#
-#         Questions.objects.create(question=question, a=a, b=b, c=c, d=d, correct_answer=correct_answer,
-#                                  difficulty_level=level, tags=tag)
-#         print(tag)
-#     else:
-#         print(tags, level)
-#         TagsList.objects.create(title=tags, level=level)
+#         q = Questions.objects.create(question=question, a=a, b=b, c=c, d=d, correct_answer=correct_answer,
+#                                      difficulty_level=level, tags=tag)
+#         print(q)
+    # else:
+    #     print(tags, level)
+    #     TagsList.objects.create(title=tags, level=level)
 
 
 class QuestionsAPI(APIView):
