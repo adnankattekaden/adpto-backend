@@ -35,6 +35,7 @@ from .serializers import QuestionSerializer
 #         print(tags, level)
 #         TagsList.objects.create(title=tags, level=level)
 
+
 class QuestionsAPI(APIView):
     authentication_classes = [CustomizePermission]
 
@@ -257,60 +258,3 @@ class GenerateRoadmapAPI(APIView):
 
         sorted_json_data = sorted(new_data, key=lambda x: sort_list.index(x["tag"]))
         return CustomResponse(response=sorted_json_data).get_success_response()
-
-# class GenerateRoadmapAPI(APIView):
-#     authentication_classes = [CustomizePermission]
-#
-#     def get(self, request, test_id):
-#         test = Tests.objects.filter(id=test_id).first()
-#         answers = Answers.objects.filter(test=test)
-#         result = generate_roadmap(answers)
-#         current_level = result.get('proficiencyLevel')
-#         correct_answers = result.get('correct_answer')
-#
-#         new_tags = set()
-#         removal_tags = {}
-#         if current_level == "Advanced":
-#             for answer in correct_answers:
-#                 if current_level == answer.get('level'):
-#                     removal_tags[answer.get('tag')] = True
-#
-#         with open('./data/Roadmaps/Python.json') as f:
-#             roadmap = json.load(f)
-#
-#         for key in roadmap:
-#             level = key.get('level')
-#             tag = key.get('tag')
-#             if current_level == level:
-#                 new_tags.add(tag)
-#
-#         for tag in removal_tags.keys():
-#             new_tags.discard(tag)
-#
-#         new_data = []
-#         for key in roadmap:
-#             tag = key.get('tag')
-#             if tag in new_tags:
-#                 reference_link = key.get('reference link')
-#                 description = key.get('description')
-#                 topic = key.get('Topic')
-#
-#                 mark_as_completed = TestTagListLink.objects.filter(
-#                     test__id=test_id,
-#                     tag__title=tag).first().is_marked_as_checked if TestTagListLink.objects.filter(
-#                     test__id=test_id, tag__title=tag).first() else False
-#
-#                 already_know = TestTagListLink.objects.filter(
-#                     test__id=test_id,
-#                     tag__title=tag).first().is_already_know if TestTagListLink.objects.filter(
-#                     test__id=test_id, tag__title=tag).first() else False
-#                 new_data.append({
-#                     'tag': tag,
-#                     'reference_link': reference_link,
-#                     'description': description,
-#                     'topic': topic,
-#                     'markAsCompleted': mark_as_completed,
-#                     'alreadyKnow': already_know
-#                 })
-#
-#         return CustomResponse(response=new_data).get_success_response()
