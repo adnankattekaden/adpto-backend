@@ -51,7 +51,7 @@ class Tests(models.Model):
     id = models.AutoField(primary_key=True)
     subject = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_time = models.DateField(auto_now_add=True)
+    date_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'tests'
@@ -61,7 +61,7 @@ class TagsList(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     level = models.CharField(max_length=200)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'tags_list'
@@ -88,7 +88,7 @@ class Answers(models.Model):
     question = models.ForeignKey(Questions, on_delete=models.CASCADE)
     answered = models.CharField(max_length=250)
     time_taken = models.FloatField()
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
     class Meta:
@@ -101,7 +101,7 @@ class TestTagListLink(models.Model):
     test = models.ForeignKey(Tests, on_delete=models.CASCADE)
     is_already_know = models.BooleanField(default=False)
     is_marked_as_checked = models.BooleanField(default=False)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'test_tag_list_link'

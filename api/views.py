@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth import authenticate
+from django.db.models import Subquery, OuterRef
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
@@ -10,7 +11,7 @@ from utils.permission import JWTUtils
 from utils.response import CustomResponse
 from utils.views import TokenGenerate
 from .models import User, Questions, Answers, Tests, TestTagListLink, TagsList
-from .serializers import QuestionSerializer
+from .serializers import QuestionSerializer, TestSerializer
 
 
 #
@@ -31,9 +32,9 @@ from .serializers import QuestionSerializer
 #         q = Questions.objects.create(question=question, a=a, b=b, c=c, d=d, correct_answer=correct_answer,
 #                                      difficulty_level=level, tags=tag)
 #         print(q)
-    # else:
-    #     print(tags, level)
-    #     TagsList.objects.create(title=tags, level=level)
+# else:
+#     print(tags, level)
+#     TagsList.objects.create(title=tags, level=level)
 
 
 class QuestionsAPI(APIView):
@@ -183,6 +184,7 @@ class GenerateRoadmapAPI(APIView):
 
     def get(self, request, test_id):
         test = Tests.objects.filter(id=test_id).first()
+
         if test is None:
             return CustomResponse(general_message='No Test Exists').get_failure_response()
         answers = Answers.objects.filter(test=test)
@@ -258,3 +260,22 @@ class GenerateRoadmapAPI(APIView):
 
         sorted_json_data = sorted(new_data, key=lambda x: sort_list.index(x["tag"]))
         return CustomResponse(response=sorted_json_data).get_success_response()
+
+
+class ListAllSubjects(APIView):
+    authentication_classes = [CustomizePermission]
+
+    def get(self, request):
+        user = User.objects.filter(id=JWTUtils.fetch_user_id(request)).first()
+
+        tests = Tests.objects.filter(
+            date_time=Subquery(
+                Tests.objects.filter(subject=OuterRef('subject'))
+                .order_by('-date_time')
+                .values('date_time')[:1]
+            )
+        )
+
+        serializer = TestSerializer(tests, many=True)
+
+        return CustomResponse(response=serializer.data).get_success_response()
