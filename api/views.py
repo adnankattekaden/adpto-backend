@@ -268,13 +268,13 @@ class ListAllSubjects(APIView):
     def get(self, request):
         user = User.objects.filter(id=JWTUtils.fetch_user_id(request)).first()
 
-        tests = Tests.objects.filter(
-            date_time=Subquery(
-                Tests.objects.filter(subject=OuterRef('subject'))
-                .order_by('-date_time')
-                .values('date_time')[:1]
-            )
-        )
+        tests = Tests.objects.filter(user=user,
+                                     date_time=Subquery(
+                                         Tests.objects.filter(subject=OuterRef('subject'))
+                                         .order_by('-date_time')
+                                         .values('date_time')[:1]
+                                     )
+                                     )
 
         serializer = TestSerializer(tests, many=True)
 
