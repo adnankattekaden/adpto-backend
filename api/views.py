@@ -217,7 +217,7 @@ class GenerateRoadmapAPI(APIView):
                 if current_level == answer.get('level'):
                     removal_tags.add(answer.get('tag'))
 
-        f = open('./data/Roadmaps/Python.json')
+        f = open('./data/Roadmaps/Python.json', encoding="utf8")
         roadmap = json.load(f)
         sort_list = []
         for key in roadmap:
