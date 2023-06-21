@@ -119,6 +119,14 @@ class CreateTestAPI(APIView):
         test_id = Tests.objects.create(user=user, subject=subject_name)
         return CustomResponse(general_message='Test Created', response={'testId': test_id.id}).get_success_response()
 
+    def delete(self, request, test_id):
+        test_id = Tests.objects.filter(id=test_id).first()
+        if test_id is None:
+            return CustomResponse(general_message='Test Doesnot Exist').get_failure_response()
+
+        test_id.delete()
+        return CustomResponse(general_message='test deleted').get_success_response()
+
 
 class UserInfo(APIView):
     authentication_classes = [CustomizePermission]
@@ -174,6 +182,8 @@ class GenerateRoadmapAPI(APIView):
 
     def get(self, request, test_id):
         test = Tests.objects.filter(id=test_id).first()
+        if test is None:
+            return CustomResponse(general_message='No Test Exists').get_failure_response()
         answers = Answers.objects.filter(test=test)
         result = generate_roadmap(answers)
         current_level = result.get('proficiencyLevel')
@@ -247,8 +257,6 @@ class GenerateRoadmapAPI(APIView):
 
         sorted_json_data = sorted(new_data, key=lambda x: sort_list.index(x["tag"]))
         return CustomResponse(response=sorted_json_data).get_success_response()
-
-
 
 # class GenerateRoadmapAPI(APIView):
 #     authentication_classes = [CustomizePermission]
