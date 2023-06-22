@@ -18,4 +18,5 @@ urlpatterns = [
 
     path('list-all-subjects/', ListAllSubjects.as_view()),
 
+
 ]
