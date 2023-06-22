@@ -109,4 +109,4 @@ class TestSerializer(serializers.ModelSerializer):
                 mark_as_completed_count += 1
             tags_count += 1
 
-        return (mark_as_completed_count / tags_count) * 100
+        return round((mark_as_completed_count / tags_count) * 100)
