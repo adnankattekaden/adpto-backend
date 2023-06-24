@@ -113,3 +113,4 @@ class TestSerializer(serializers.ModelSerializer):
             tags_count += 1
 
         return (mark_as_completed_count / tags_without_alreadyKnow) * 100
+
