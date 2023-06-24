@@ -103,10 +103,13 @@ class TestSerializer(serializers.ModelSerializer):
         sorted_json_data = sorted(new_data, key=lambda x: sort_list.index(x["tag"]))
         tags_count = 0
         mark_as_completed_count = 0
+        tags_without_alreadyKnow = 0
         for i in sorted_json_data:
 
             if i.get('mark_as_completed') == True:
                 mark_as_completed_count += 1
+            if i.get('alreadyKnow') == False:
+                tags_without_alreadyKnow += 1
             tags_count += 1
 
-        return (mark_as_completed_count / tags_count) * 100
+        return (mark_as_completed_count / tags_without_alreadyKnow) * 100
