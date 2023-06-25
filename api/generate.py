@@ -1,3 +1,4 @@
+import joblib
 def generate(answers):
     difficulty_weights = {'Beginner': 3, 'Intermediate': 5, 'Advanced': 8}
     time_thresholds = {'Beginner': 10, 'Intermediate': 20, 'Advanced': 30}
@@ -112,5 +113,17 @@ def generate_roadmap(answers):
     else:
         proficiency_level = proficiency_levels[level_index]
 
+    #added code for model prediction
+
+    # Load the trained model
+    model = joblib.load('../data/trained_model.joblib')
+
+    # Make predictions using the loaded model
+    predictions = model.predict(new_student)
+    joblib_prediction = proficiency_levels[predictions[0]]
+
+    print(f"Predicted Proficiency Level for the new student: {joblib_prediction}")
+
+    #replace proficiency_level with joblib_prediction
     return {'totalScore': total_score, 'proficiencyLevel': proficiency_level, 'elapsedTime': elapsed_time,
             'wrong': wrong_questions_tags, 'correct_answer': correct_answer_tags, 'reports': reports}
