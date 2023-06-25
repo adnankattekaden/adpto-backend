@@ -116,7 +116,7 @@ def generate_roadmap(answers):
     #added code for model prediction
 
     # Load the trained model
-    model = joblib.load('trained_model.joblib')
+    model = joblib.load('../data/trained_model.joblib')
 
     # Make predictions using the loaded model
     predictions = model.predict(new_student)
