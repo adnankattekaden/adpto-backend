@@ -272,7 +272,7 @@ class ListAllSubjects(APIView):
 
         tests = Tests.objects.filter(user=user,
                                      date_time=Subquery(
-                                         Tests.objects.filter(subject=OuterRef('subject'))
+                                         Tests.objects.filter(user=user,subject=OuterRef('subject'))
                                          .order_by('-date_time')
                                          .values('date_time')[:1]
                                      )

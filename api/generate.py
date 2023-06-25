@@ -1,4 +1,5 @@
 import joblib
+
 def generate(answers):
     difficulty_weights = {'Beginner': 3, 'Intermediate': 5, 'Advanced': 8}
     time_thresholds = {'Beginner': 10, 'Intermediate': 20, 'Advanced': 30}
