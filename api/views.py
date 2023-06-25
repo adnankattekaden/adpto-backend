@@ -127,7 +127,8 @@ class CreateTestAPI(APIView):
             return CustomResponse(general_message='Test Doesnot Exist').get_failure_response()
 
         subject = test.subject
-        tests = Tests.objects.filter(subject=subject)
+        user = User.objects.filter(id=JWTUtils.fetch_user_id(request)).first()
+        tests = Tests.objects.filter(subject=subject,user=user)
         for test_ in tests:
             test_.delete()
         return CustomResponse(general_message='test deleted').get_success_response()
