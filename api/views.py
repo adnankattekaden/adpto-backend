@@ -122,11 +122,14 @@ class CreateTestAPI(APIView):
         return CustomResponse(general_message='Test Created', response={'testId': test_id.id}).get_success_response()
 
     def delete(self, request, test_id):
-        test_id = Tests.objects.filter(id=test_id).first()
-        if test_id is None:
+        test = Tests.objects.filter(id=test_id).first()
+        if test is None:
             return CustomResponse(general_message='Test Doesnot Exist').get_failure_response()
 
-        test_id.delete()
+        subject = test.subject
+        tests = Tests.objects.filter(subject=subject)
+        for test_ in tests:
+            test_.delete()
         return CustomResponse(general_message='test deleted').get_success_response()
 
 
@@ -272,12 +275,11 @@ class ListAllSubjects(APIView):
 
         tests = Tests.objects.filter(user=user,
                                      date_time=Subquery(
-                                         Tests.objects.filter(user=user,subject=OuterRef('subject'))
+                                         Tests.objects.filter(user=user, subject=OuterRef('subject'))
                                          .order_by('-date_time')
                                          .values('date_time')[:1]
                                      )
                                      )
-        
 
         serializer = TestSerializer(tests, many=True)
 
