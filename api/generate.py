@@ -1,4 +1,4 @@
-import joblib
+# import joblib
 
 def generate(answers):
     difficulty_weights = {'Beginner': 3, 'Intermediate': 5, 'Advanced': 8}
@@ -50,6 +50,46 @@ def generate(answers):
     else:
         proficiency_level = proficiency_levels[level_index]
 
+    """
+    !important
+    # - uncomment
+
+    """
+
+    features = ['total_score', 'Elapsed time', 'correct_answers', 'correct_big', 'Correct_int', 'correct_adv','Age','Gender', 'Educational Background']
+
+
+    ###added code for model prediction
+
+    ### Load the trained model
+
+    # model = joblib.load('../data/trained_model.joblib')
+
+    ### Make predictions using the loaded model
+
+
+
+    """
+    !important
+    structure of new_student = [[total_score , Elapsed time , correct_answers , correct_begginner_count , Correct_intermediate_count , correct_advanced_count , Age in number , Gender in number , Educational Background in number ]]
+    1. mele age_levels , gender_levels , education_levels enn paranj 3 array und.
+    2. nee aadyam usernte age-le data edth athin matching ayittulla age_levelsile index edukuka.
+    3. ath edth athinte *index of age_levels* edukua. ennt ath venam Age in number akki kodukkan.
+    4. athpole genderum education um cheyyanam.
+    5. ennit new_student ulla avide ee array kodukkuka.
+
+    example: 
+    predictions = model.predict([[100, 14, 4, 2, 2, 0,3, 0,3 ]])
+
+
+    """
+    # predictions = model.predict(new_student)
+    # joblib_prediction = proficiency_levels[predictions[0]]
+
+    # print(f"Predicted Proficiency Level for the new student: {joblib_prediction}")
+
+    ###replace proficiency_level with joblib_prediction
+
     return {'totalScore': total_score, 'proficiencyLevel': proficiency_level, 'elapsedTime': elapsed_time,
             'wrong': wrong_questions_tags, 'reports': reports}
 
@@ -60,6 +100,9 @@ def generate_roadmap(answers):
     penalty_factor = 1
 
     proficiency_levels = ['Beginner', 'Intermediate', 'Advanced']
+    age_levels = ['young','middle','old','very_old']
+    gender_levels = ['male','female','other']
+    education_levels = ['Primary School','Middle School','High School','Undergraduate','Graduate','Doctorate']
     min_scores = [0, 30, 60]
 
     total_score = 0
@@ -114,17 +157,5 @@ def generate_roadmap(answers):
     else:
         proficiency_level = proficiency_levels[level_index]
 
-    #added code for model prediction
-
-    # Load the trained model
-    model = joblib.load('../data/trained_model.joblib')
-
-    # Make predictions using the loaded model
-    predictions = model.predict(new_student)
-    joblib_prediction = proficiency_levels[predictions[0]]
-
-    print(f"Predicted Proficiency Level for the new student: {joblib_prediction}")
-
-    #replace proficiency_level with joblib_prediction
     return {'totalScore': total_score, 'proficiencyLevel': proficiency_level, 'elapsedTime': elapsed_time,
             'wrong': wrong_questions_tags, 'correct_answer': correct_answer_tags, 'reports': reports}
